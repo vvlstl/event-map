@@ -81,6 +81,9 @@ export default (env: EnvVariables) => {
         },
         resolve: {
             extensions: ['.tsx', '.ts', '.js', '.vue'],
+            alias: {
+                '~/*': path.resolve(__dirname, '/*'),
+            },
         },
         devServer: {
             port: 5000,
