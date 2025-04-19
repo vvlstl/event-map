@@ -1,5 +1,6 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
+import {VueLoaderPlugin} from "vue-loader";
 
 type TMode = 'development' | 'production';
 
@@ -20,18 +21,30 @@ export default (env: EnvVariables) => {
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, 'templates', 'index.html'),
             }),
+            new VueLoaderPlugin(),
         ],
         module: {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    use: 'ts-loader',
-                    exclude: path.resolve(__dirname, '/node_modules/'),
+                    use: [
+                        {
+                            loader: 'ts-loader',
+                            options: {
+                                appendTsSuffixTo: [/\.vue$/]
+                            }
+                        }
+                    ],
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.vue$/,
+                    loader: 'vue-loader'
                 },
             ],
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
+            extensions: ['.tsx', '.ts', '.js', '.vue'],
         },
         devServer: {
             port: 5000,
