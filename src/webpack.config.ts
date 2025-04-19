@@ -1,6 +1,9 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 import {VueLoaderPlugin} from "vue-loader";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {globSync} from "glob";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 type TMode = 'development' | 'production';
 
@@ -22,6 +25,10 @@ export default (env: EnvVariables) => {
                 template: path.resolve(__dirname, 'templates', 'index.html'),
             }),
             new VueLoaderPlugin(),
+            new MiniCssExtractPlugin({
+                filename: '[name].[contenthash].css',
+            }),
+            new CssMinimizerPlugin(),
         ],
         module: {
             rules: [
@@ -40,6 +47,35 @@ export default (env: EnvVariables) => {
                 {
                     test: /\.vue$/,
                     loader: 'vue-loader'
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader'
+                    ]
+                },
+                {
+                    test: /\.less$/i,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                additionalData: (content: string, loaderContext: any) => {
+                                    // Динамически читаем файлы при каждой компиляции
+                                    const relativeLessFiles = globSync(
+                                        path.resolve(__dirname, 'css/partials/', '*.less')
+                                    ).map(file => `partials/${path.basename(file)}`);
+
+                                    return relativeLessFiles
+                                        .map((file: string) => `@import "${file}";`)
+                                        .join('\n') + content;
+                                }
+                            }
+                        }
+                    ],
                 },
             ],
         },
