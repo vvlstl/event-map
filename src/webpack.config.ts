@@ -64,10 +64,18 @@ export default (env: EnvVariables) => {
                             loader: 'less-loader',
                             options: {
                                 additionalData: (content: string, loaderContext: any) => {
-                                    // Динамически читаем файлы при каждой компиляции
+                                    // Динамически читаем файлы при каждой компиляции (рекурсивно во всех подпапках)
                                     const relativeLessFiles = globSync(
-                                        path.resolve(__dirname, 'css/partials/', '*.less')
-                                    ).map(file => `partials/${path.basename(file)}`);
+                                        path.resolve(__dirname, 'css/**/', '*.less'),
+                                        { nodir: true }
+                                    ).map(file => {
+                                        // Получаем относительный путь от папки css
+                                        const relativePath = path.relative(
+                                            path.resolve(__dirname, 'css'),
+                                            file
+                                        );
+                                        return relativePath.split(path.sep).join('/'); // Нормализуем разделители путей
+                                    });
 
                                     return relativeLessFiles
                                         .map((file: string) => `@import "${file}";`)
