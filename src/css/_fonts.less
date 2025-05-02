@@ -1,0 +1,30 @@
+@import "_var";
+
+/****
+ * Подключение шрифтов
+ ****/
+
+.font(@fontName, @fontFileName, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: @fontName;
+    src: url('@{fontPath}@{fontFileName}.woff2') format('woff2');
+    font-weight: @weight;
+    font-style: @style;
+    font-display: swap;
+  }
+}
+
+.variable-font(@fontName, @fontFileName, @style: normal, @range: '') {
+  @font-face {
+    font-family: @fontName;
+    src: url('@{fontPath}@{fontFileName}.woff2') format('woff2');
+    font-display: swap;
+
+    & when(@range) {
+      unicode-range: @range;
+    }
+  }
+}
+
+.variable-font(@fontName, 'OpenSans-Regular');
+

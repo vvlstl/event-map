@@ -1,10 +1,11 @@
 <template>
 	<div class="event-card">
-		<img
-			class="event-card__image"
-			:src="item.image"
-			alt="Конференция"
-		>
+		<div class="event-card__image">
+			<img
+				:src="item.image"
+				alt="Конференция"
+			>
+		</div>
 		<div class="event-card__content">
 			<div class="event-card__title" v-html="item.name"/>
 			<div class="event-card__description" v-html="item.description"/>
