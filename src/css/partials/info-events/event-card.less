@@ -1,18 +1,11 @@
 @import "../../_var";
 
 .event-card {
-  .transit(transform);
-  font-family: 'Arial', sans-serif;
-  max-width: 350rem;
   border-radius: 12rem;
-  overflow: hidden;
-  box-shadow: 0 4rem 12rem fade(@cBlack, 10);
   background: @cWhite;
-  margin: var(--m24);
-
-  .hover({
-    transform: translateY(-5px);
-  });
+  box-shadow: 0 4rem 12rem fade(@cBlack, 10);
+  overflow: hidden;
+  cursor: pointer;
 
   &__image {
     .size(100%, 180rem);

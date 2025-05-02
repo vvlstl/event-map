@@ -6,4 +6,6 @@ export type TEventCard = {
     date: string,
     source: string;
     image: string;
+    lat: number,
+    lng: number,
 }

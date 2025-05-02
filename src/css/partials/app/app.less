@@ -1,4 +1,9 @@
+@import "../../_var";
+
 .app {
+  .column-property(--map, 16, 24);
+  .column-property(--events, 8, 24);
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: var(--map) var(--events);
+  gap: var(--grid-gap);
 }
