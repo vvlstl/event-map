@@ -5,10 +5,10 @@ export class InfoEventsData {
     public static getMockEvents(count: number): TEventCard[] {
         return Array.from({ length: count }, (_, i) => {
             const barnaulBounds = {
-                latMin: 53.25,
+                latMin: 53.35,
                 latMax: 53.40,
-                lngMin: 83.60,
-                lngMax: 83.85
+                lngMin: 83.75,
+                lngMax: 83.80
             };
 
             return {

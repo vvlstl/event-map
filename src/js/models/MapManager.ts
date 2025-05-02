@@ -6,7 +6,7 @@ export class MapManager {
     protected markers: Leaflet.Marker[] = [];
 
     constructor(containerId: string) {
-        this.map = Leaflet.map(containerId).setView([53.3481, 83.7796], 14);
+        this.map = Leaflet.map(containerId).setView([53.3481, 83.7796], 13);
 
         Leaflet.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: '© Esri Satellite',
