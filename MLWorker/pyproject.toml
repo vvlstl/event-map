@@ -1,0 +1,13 @@
+[project]
+name = "mlworker"
+version = "0.1.0"
+description = "News processing worker"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiohttp==3.11.18",
+    "aio-pika==9.5.5",
+    "pydantic-settings==2.9.1",
+    "pyaml==25.1.0",
+    "pydantic-ai==0.1.9",
+]
