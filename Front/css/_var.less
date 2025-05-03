@@ -1,0 +1,260 @@
+@import "_mixins";
+
+/**
+ * Переменные
+ **/
+.css-vars() {
+  --refRes: 1440;
+  --ratio: .7;
+  --px: calc(1px + var(--ratio) * ((100vw - var(--refRes) * 1px) / var(--refRes)));
+
+  --page-scrollbar-width: 8rem;
+  --scroll-lock-compensation: 0rem;
+
+  // на мобилках некорректно работает vh в css, переопределяется в JS
+  // в некоторых блоках, где нужно избежать дерготни контента при сворачивании / разворачивании панельки браузера, используйте vh, а не --vh
+  --vh: 1vh;
+  --sw: var(--page-scrollbar-width);
+
+  // Layout
+  --content-max-width: 1900rem; // Максимальная ширина контента
+  --content-width: ~'min(100% - 2 * var(--page-gutter), var(--content-max-width))'; // Текущая ширина контента
+  --page-width: calc(100vw - var(--sw)); // Ширина страницы без учета скроллбара
+
+  --header-height: 104rem;
+
+  --page-gutter: var(--m24);
+  --full-page-gutter: ~'max((var(--page-width) - var(--content-max-width)) / 2, var(--page-gutter))';
+  --grid-gap: var(--m24);
+
+  --page-bg-color: @cWhite; //цвет body
+
+  // Типографика
+  --fs4: 4rem;
+  --fs8: 8rem;
+  --fs12: 12rem;
+  --fs14: 14rem;
+  --fs16: 16rem;
+  --fs18: 18rem;
+  .responsive(--fs64, 64rem, .87); //xs 32rem
+
+  // Вертикальные отступы
+  --m4: 4rem;
+  --m8: 8rem;
+  --m12: 12rem;
+  --m14: 14rem;
+  --m16: 16rem;
+  --m24: 24rem;
+  --m30: 30rem;
+  --m32: 32rem;
+
+  // Поля ввода
+  --input-color: @cBlack500;
+  --input-background-color: @cWhite;
+  --input-border-color: @cWhite;
+
+  --input-hover-color: @cBlack500;
+  --input-hover-background-color: @cWhite;
+  --input-hover-border-color: fade(@cBlue600, 20);
+
+  --input-focus-color: @cBlack500;
+  --input-focus-background-color: @cWhite;
+  --input-focus-border-color: fade(@cBlue600, 40);
+
+  --input-placeholder-color: @cBlack300;
+
+  --input-height: 38rem;
+  --input-padding-top: 8rem;
+  --input-padding-bottom: var(--input-padding-top);
+  --input-padding-left: 32rem;
+  --input-padding-right: var(--input-padding-left);
+  --input-border-width: 1rem;
+  --input-font-weight: 500;
+  --input-font-size: var(--fs12);
+  --input-line-height: 22rem;
+  --input-font-family: @font;
+  --input-border-radius: 16rem;
+
+  @media @mediaXl {
+    --ratio: 1;
+    --refRes: 1240;
+  }
+
+  @media @mediaLg {
+    --refRes: 1024;
+
+    @media @mediaLandscape {
+      --refRes: 1240;
+    }
+  }
+
+  @media @mediaMd {
+    --input-font-size: 16rem; // fix zoom на ios при фокусе в поле
+    --refRes: 768;
+
+    @media @mediaLandscape {
+      --refRes: 1024;
+    }
+  }
+
+  @media @mediaSm {
+    --page-scrollbar-width: 0rem;
+    --page-gutter: 16rem;
+    --header-height: 72rem;
+    --refRes: 480;
+
+    @media @mediaLandscape {
+      --refRes: 768;
+    }
+  }
+
+  @media @mediaXs {
+    --refRes: 360;
+
+    @media @mediaLandscape {
+      --refRes: 480;
+    }
+  }
+}
+
+@basePath: "/";
+//noinspection LessUnresolvedVariable
+@imagePath: '@{basePath}images/';
+//noinspection LessUnresolvedVariable
+@fontPath: '@{basePath}css/fonts/';
+
+/**
+ * Сетка
+ **/
+
+@screenXs: 480px;
+@screenSm: 768px;
+@screenMd: 1024px;
+@screenLg: 1240px;
+@screenXl: 1440px;
+@screenXxl: 1940px;
+
+@screenXsMax: (@screenXs - 1);
+@screenSmMax: (@screenSm - 1);
+@screenMdMax: (@screenMd - 1);
+@screenLgMax: (@screenLg - 1);
+@screenXlMax: (@screenXl - 1);
+@screenXxlMax: (@screenXxl - 1);
+
+@mediaXs: ~'(max-width: @{screenXsMax})';
+@mediaSm: ~'(max-width: @{screenSmMax})';
+@mediaMd: ~'(max-width: @{screenMdMax})';
+@mediaLg: ~'(max-width: @{screenLgMax})';
+@mediaXl: ~'(max-width: @{screenXlMax})';
+
+@mediaMoreXs: ~'(min-width: @{screenXs})';
+@mediaMoreSm: ~'(min-width: @{screenSm})';
+@mediaMoreMd: ~'(min-width: @{screenMd})';
+@mediaMoreLg: ~'(min-width: @{screenLg})';
+@mediaMoreXl: ~'(min-width: @{screenXl})';
+@mediaMoreXxl: ~'(min-width: @{screenXxl})';
+
+@mediaHover: ~'(pointer: fine), (-ms-high-contrast: none), (-ms-high-contrast: active)';
+@mediaNotHover: ~'(pointer: coarse)';
+
+@mediaPortrait: ~'(orientation: portrait)';
+@mediaLandscape: ~'(orientation: landscape)';
+
+@columnsCount: 24;
+
+/**
+ * Шрифты
+ **/
+@fontName: 'OpenSans';
+@font: @fontName, Arial, sans-serif, -apple-system;
+
+/**
+ * Цвета
+ **/
+
+@cRed: #E95528;
+
+@cYellow: #FAC70F;
+
+@cBlue50: #E8ECFD;
+@cBlue100: #D1D8FA;
+@cBlue200: #A3B2F5;
+@cBlue300: #758BF0;
+@cBlue400: #4665EC;
+@cBlue500: #5E78EE;
+@cBlue600: #1332B9;
+@cBlue700: #0F258A;
+@cBlue800: #0A195C;
+@cBlue900: #050C2E;
+@cDarkBlue: #092D79;
+@cBgLightBlue: #F5F8FF;
+
+@cBlack: #000;
+@cBlack50: #F1F1F3;
+@cBlack100: #E4E5E7;
+@cBlack200: #C9CACF;
+@cBlack300: #AEB0B7;
+@cBlack400: #93959F;
+@cBlack500: #1F2023;
+@cBlack600: #60626C;
+@cBlack700: #484A51;
+@cBlack800: #303136;
+@cBlack900: #18191B;
+
+@cWhite: #fff;
+@cWhite50: #F2F2F2;
+@cWhite100: #E6E6E6;
+@cWhite200: #BDC4E5;
+@cWhite300: #B3B3B3;
+@cWhite400: #999999;
+@cWhite500: #FFFFFF;
+
+@cPink500: #FC5070;
+@cPink600: #F00632;
+
+@cOverlay: fade(@cBlack, 50);
+@cPlaceholder: @cWhite50;
+
+@fBlue50: invert(100%) sepia(60%) saturate(1330%) hue-rotate(179deg) brightness(92%) contrast(118%);
+@fBlue100: invert(87%) sepia(17%) saturate(878%) hue-rotate(191deg) brightness(99%) contrast(99%);
+@fBlue200: invert(80%) sepia(59%) saturate(2181%) hue-rotate(189deg) brightness(99%) contrast(94%);
+@fBlue300: invert(67%) sepia(72%) saturate(4145%) hue-rotate(205deg) brightness(100%) contrast(89%);
+@fBlue400: invert(35%) sepia(83%) saturate(3570%) hue-rotate(222deg) brightness(97%) contrast(91%);
+@fBlue500: invert(54%) sepia(45%) saturate(5279%) hue-rotate(211deg) brightness(96%) contrast(95%);
+@fBlue600: invert(14%) sepia(92%) saturate(3547%) hue-rotate(226deg) brightness(94%) contrast(92%);
+@fBlue700: invert(12%) sepia(50%) saturate(6048%) hue-rotate(227deg) brightness(83%) contrast(95%);
+@fBlue800: invert(8%) sepia(90%) saturate(3018%) hue-rotate(229deg) brightness(94%) contrast(103%);
+@fBlue900: invert(3%) sepia(50%) saturate(6647%) hue-rotate(210deg) brightness(98%) contrast(97%);
+
+// Фильтры используются для покраски контентных изображений
+@fBlack: brightness(0);
+@fWhite: brightness(0) invert(1);
+
+/**
+ * UI
+ **/
+@hoverOpacity: .8;
+@activeOpacity: .6;
+@disabledOpacity: .3;
+
+@defaultFocusRuleset: {
+  outline: 1rem dashed @cBlack !important;
+  outline-offset: 5rem;
+}
+
+@defaultActiveRuleset: {
+  opacity: @activeOpacity;
+}
+
+/**
+ * Анимация
+ **/
+@transitTime: .2s; // Используется для ховеров на текст и иконки (изменение цвета, прозрачности)
+@transitTimeMedium: .4s; // Используется для анимации стейтов
+@swiperTransitionTime: .5s;
+@transitEase: ease;
+
+/**
+ * Z-index
+ */
+@headerZIndex: 100;

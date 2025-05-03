@@ -1,0 +1,370 @@
+@import "_var";
+
+/****
+ * Анимация
+ ****/
+.transit(@prop: all, @time: @transitTime, @ease: @transitEase) {
+  transition-property: e(@prop);
+  transition-duration: @time;
+  transition-timing-function: @ease;
+}
+
+/****
+ * Ховеры
+ ****/
+.hover(@hoverRuleset: false, @focusRuleset: @defaultFocusRuleset, @activeRuleset: @defaultActiveRuleset, @touch: true) {
+  & when (@touch = true) {
+    @media @mediaNotHover {
+      & when not (@hoverRuleset = false) {
+        &:active {
+          @hoverRuleset();
+        }
+      }
+    }
+  }
+
+  @media @mediaHover {
+    & when not (@hoverRuleset = false) {
+      &:hover {
+        @hoverRuleset();
+      }
+    }
+
+    & when not (@activeRuleset = false) {
+      &:active {
+        @activeRuleset();
+      }
+    }
+
+    & when not (@focusRuleset = false) {
+      &:focus-visible {
+        @focusRuleset();
+      }
+    }
+  }
+}
+
+.btn-hover()  {
+  color: var(--btn-hover-color);
+  border-color: var(--btn-hover-border-color);
+  background-color: var(--btn-hover-bg-color);
+
+  .btn__icon--colored {
+    filter: var(--btn-hover-icon-filter);
+  }
+}
+
+.btn-active() {
+  color: var(--btn-active-color);
+  border-color: var(--btn-active-border-color);
+  background-color: var(--btn-active-bg-color);
+
+  .btn__icon--colored {
+    filter: var(--btn-active-icon-filter);
+  }
+}
+
+.btn-disabled() {
+  color: var(--btn-disabled-color);
+  border-color: var(--btn-disabled-border-color);
+  background-color: var(--btn-disabled-bg-color);
+  pointer-events: none;
+
+  .btn__icon--colored {
+    filter: var(--btn-disabled-icon-filter);
+  }
+}
+
+/****
+ * Сброс дефолтных стилей
+ ****/
+.clear-input() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none !important;
+  resize: none;
+  box-shadow: none;
+  font-family: @font;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-ms-reveal,
+  &::-ms-clear {
+    display: none;
+  }
+
+  //noinspection CssInvalidPseudoSelector
+  &::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  //Скрываем стрелки
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+.clear-btn() {
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  text-align: inherit;
+  -webkit-tap-highlight-color: transparent;
+  color: currentColor;
+}
+
+.clear-link(@color: currentColor) {
+  color: @color;
+  text-decoration: none;
+  outline: none !important;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.clear-list() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hide-input() {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  //noinspection CssUnknownProperty
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important
+}
+
+/****
+ * Sizes
+ ****/
+.size(@width, @height: @width) {
+  width: @width;
+  height: @height;
+}
+
+@column: 100%;
+.column(@count: 1, @total: @columnsCount, @columnGap: var(--grid-gap)) {
+  @column: calc(@count * (100% - @columnGap * (@total - 1)) / @total + @columnGap * (@count - 1));
+}
+
+.column-property(@prop: '', @count: 1, @total: @columnsCount, @columnGap: var(--grid-gap)) {
+  .column(@count, @total, @columnGap);
+    @{prop}: @column;
+}
+
+// Стандартная сетка
+// Преимущество использования calc вместо fr - сетку не разносит контентом
+.grid(@total: @columnsCount, @columnGap: var(--grid-gap), @rowGap: @columnGap) {
+  .template-columns(@total, @columnGap);
+  display: grid;
+  grid-column-gap: @columnGap;
+  grid-row-gap: @rowGap;
+}
+
+// Используется для изменения grid-template-columns у .grid(), например, на адаптиве
+.template-columns(@total: @columnsCount, @columnGap: var(--grid-gap)) {
+  .column(1, @total, @columnGap);
+  grid-template-columns: repeat(@total, @column);
+}
+
+// Используется, если нужно установить блоку ширину по сетке без использования grid
+.column-width(@count: 1, @total: @columnsCount, @gap: var(--grid-gap)) {
+  .column(@count, @total, @gap);
+  width: @column;
+}
+
+// Блоки, пропорционально изменяющие высоту в зависимоти от ширины
+.proportional-size(@ratio: 1, @position: relative, @minHeight: 0px, @maxHeight: 9999999px) {
+  position: @position;
+
+  &:before {
+    position: relative;
+    content: '';
+    display: block;
+    padding-bottom: ~'clamp(@{minHeight}, @{ratio} * 100%, @{maxHeight})';
+  }
+}
+
+/****
+ * Разное
+ ****/
+.pseudo(@position: absolute) {
+  content: '';
+
+  & when (@position = absolute) {
+    position: absolute;
+  }
+
+  & when (@position = relative) {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.line-clamp(@line-count: 3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  //noinspection CssUnknownProperty
+  -webkit-line-clamp: @line-count;
+}
+
+.picture(
+  @ratio: 1,
+  @fit: scale-down,
+  @position: relative,
+  @overflow: hidden,
+  @size: 100%,
+  @minHeight: 0px,
+  @maxHeight: 9999999px,
+  @overlay: '',
+  @useAspectRatio: false
+) {
+  overflow: @overflow;
+  transform: translateZ(0); // fix safari квадратные углы у картинок
+
+  img, picture, video {
+    object-fit: @fit;
+    border-radius: inherit;
+    transform: translateZ(0); // fix safari квадратные углы у картинок
+  }
+
+  & when (@useAspectRatio = false) {
+    .proportional-size(@ratio, @position, @minHeight, @maxHeight);
+
+    img, picture, video {
+      .size(@size);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+    }
+  }
+
+  & when not(@useAspectRatio = false) {
+    img, picture, video {
+      .size(100%, auto);
+      display: block;
+      aspect-ratio: ~'calc(1 / @{ratio})';
+    }
+  }
+
+  & when not(@overlay = false) {
+    &:after {
+      .pseudo();
+      .size(100%);
+      top: 0;
+      left: 0;
+      z-index: 2;
+      background: @overlay;
+      border-radius: inherit;
+    }
+  }
+}
+
+// Используется для того, чтобы у блока не было разрывов при печати и при использовании columns у родителя
+.avoid-break() {
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.responsive(@name, @size, @ratio) {
+  // responsive генерирует плравила только для @media, чтобы в _var.less оставалось объявление переменной, и шторм ее видел
+  //@{name}: @size;
+
+  @media @mediaXl {
+      @{name}: round(@size * @ratio);
+  }
+
+  @media @mediaLg {
+      @{name}: round(@size * pow(@ratio, 2));
+  }
+
+  @media @mediaMd {
+      @{name}: round(@size * pow(@ratio, 3));
+  }
+
+  @media @mediaSm {
+      @{name}: round(@size * pow(@ratio, 4));
+  }
+
+  @media @mediaXs {
+      @{name}: round(@size * pow(@ratio, 5));
+  }
+}
+
+.cover() {
+  .size(100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container(@width, @height: @width) {
+  .size(@width, @height);
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.property-animation(@propertyName: --value, @variableName: --scroll, @variableStart: 0, @variableEnd: 1, @propertyStart: 0, @propertyEnd: 1, @forceClamp: false) {
+    @{propertyName}: ~'calc(@{propertyStart} + (@{propertyEnd} - @{propertyStart}) * ((var(@{variableName}, 0) - @{variableStart}) / (@{variableEnd} - @{variableStart})))';
+
+  & when (@propertyStart < @propertyEnd) or (@forceClamp = 1) {
+      @{propertyName}: ~'clamp(@{propertyStart}, @{propertyStart} + (@{propertyEnd} - @{propertyStart}) * ((var(@{variableName}, 0) - @{variableStart}) / (@{variableEnd} - @{variableStart})), @{propertyEnd})';
+  }
+
+  & when (@propertyStart > @propertyEnd) or (@forceClamp = -1) {
+      @{propertyName}: ~'clamp(@{propertyEnd}, @{propertyStart} + (@{propertyEnd} - @{propertyStart}) * ((var(@{variableName}, 0) - @{variableStart}) / (@{variableEnd} - @{variableStart})), @{propertyStart})';
+  }
+}
+
+.scroll-animation(@propertyName: --value, @scrollStart: 0, @scrollEnd: 1, @valueStart: 0, @valueEnd: 1, @forceClamp: false) {
+  .property-animation(@propertyName, --scroll, @scrollStart, @scrollEnd, @valueStart, @valueEnd, @forceClamp)
+}
+
