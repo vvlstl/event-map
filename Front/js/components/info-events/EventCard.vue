@@ -1,5 +1,8 @@
 <template>
-	<div class="event-card">
+	<div
+		class="event-card"
+		@click="openPopup"
+	>
 		<div class="event-card__image">
 			<img
 				:src="item.image"
@@ -19,11 +22,17 @@
 </template>
 <script setup lang="ts">
 	import {TEventCard} from "~/types/TEventCard";
+	import {show} from "~/js/controllers/popup";
 
 	type TComponentProps = {
 		item: TEventCard,
 	}
 
 	const props = defineProps<TComponentProps>();
+
+	function openPopup()
+	{
+		show('event');
+	}
 </script>
 

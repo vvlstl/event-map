@@ -1,0 +1,70 @@
+@import '../_var.less';
+
+/**
+* Базовые стили попапов
+**/
+
+.popup {
+  --popup-padding: 48rem;
+  --popup-width: 684rem;
+  --popup-background: @cWhite;
+  --popup-border-radius: 24rem;
+  --popup-cross-size: 24rem;
+
+  &:extend(.custom-scrollbar all);
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+  }
+
+  &__overlay {
+    background: @cOverlay !important;
+    width: 100%;
+  }
+
+  &__content {
+    position: relative;
+    background: var(--popup-background);
+    box-sizing: border-box;
+    margin: auto;
+    max-width: 100%;
+    width: var(--popup-width);
+    padding: var(--popup-padding);
+    border-radius: var(--popup-border-radius);
+  }
+
+  &__close {
+    --cross-area-size: 24rem;
+    --cross-size: 13rem;
+    --cross-line-width: 2rem;
+
+    z-index: 100;
+    position: absolute;
+    top: var(--popup-padding);
+    right: var(--popup-padding);
+    color: @cWhite200;
+  }
+
+  &--gallery {
+    right: var(--scroll-lock-compensation) !important;
+
+    .popup {
+      &__close {
+        display: none;
+      }
+
+      &__content {
+        .size(100%);
+        background: none;
+        padding: 0;
+      }
+    }
+  }
+
+  @media @mediaXs {
+    --popup-padding: var(--m24);
+  }
+}

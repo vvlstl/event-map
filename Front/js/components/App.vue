@@ -3,6 +3,7 @@
 		<Map :markers="mapMarkers"/>
 		<InfoEvents :items="eventItems"/>
 	</div>
+	<ModalsContainer/>
 </template>
 <script setup lang="ts">
 	import Map from "~/js/components/Map.vue";

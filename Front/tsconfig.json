@@ -3,7 +3,6 @@
     "outDir": "./build/",
     "noImplicitAny": true,
     "module": "ESNext",
-    "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
@@ -13,11 +12,13 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"]
-    }
+    },
+    "lib": ["es2021", "dom"],
+    "target": "es2021"
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
+      "module": "CommonJS",
     }
   },
 }

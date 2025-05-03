@@ -1,6 +1,9 @@
-import { createApp } from 'vue';
-import App from "./js/components/App.vue";
-import './css/styles.less';
+import {createApp} from 'vue';
+import {vfmPlugin} from 'vue-final-modal';
+import App from "~/js/components/App.vue";
+import '~/css/styles.less';
 
+const app = createApp(App);
 
-createApp(App).mount('#app');
+app.use(vfmPlugin);
+app.mount('#app');
