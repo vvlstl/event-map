@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-		<Map :markers="mapMarkers"/>
+		<Map :markers="eventItems"/>
 		<InfoEvents :items="eventItems"/>
 	</div>
 	<ModalsContainer/>
@@ -12,10 +12,5 @@
 	import {computed} from "vue";
 
 	const eventItems = InfoEventsData.getMockEvents(5);
-	const mapMarkers = computed(() => {
-		return eventItems.map(event => ({
-			lat: event.lat,
-			lng: event.lng
-		}));
-	});
+
 </script>

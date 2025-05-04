@@ -24,8 +24,9 @@
 		@closed="onClosed"
 		ref="popupElement"
 	>
-		<button @click="close" class="cross link popup__close"></button>
-
+		<div class="popup__close">
+			<button @click="close" class="cross link"></button>
+		</div>
 		<slot/>
 
 	</VueFinalModal>

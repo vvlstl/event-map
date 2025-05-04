@@ -24,7 +24,7 @@
   --btn-disabled-icon-filter: var(--btn-icon-filter);
 
   --btn-border-width: 1rem;
-  --btn-height: 60rem;
+  --btn-height: 48rem;
   --btn-icon-gap: 8rem;
   --btn-padding: 0 var(--m24);
   --btn-border-radius: 12rem;
@@ -101,31 +101,6 @@
   }
 
   // Модификаторы цвета
-  &--pink {
-    --btn-bg-color: @cPink500;
-    --btn-border-color: @cPink500;
-    --btn-color: @cWhite;
-    --btn-icon-filter: @fWhite;
-
-    --btn-hover-bg-color: @cPink600;
-    --btn-hover-border-color: @cPink600;
-    --btn-hover-color: @cWhite;
-    --btn-hover-icon-filter: @fWhite;
-  }
-
-
-  &--blue-500 {
-    --btn-bg-color: @cBlue500;
-    --btn-border-color: @cBlue500;
-    --btn-color: @cWhite;
-    --btn-icon-filter: @fWhite;
-
-    --btn-hover-bg-color: @cBlue400;
-    --btn-hover-border-color: @cBlue400;
-    --btn-hover-color: @cWhite;
-    --btn-hover-icon-filter: @fWhite;
-  }
-
   &--dark-blue {
     --btn-border-color: @cDarkBlue;
     --btn-color: @cDarkBlue;
@@ -150,33 +125,6 @@
     --btn-hover-color: @cBlue500;
     --btn-hover-icon-filter: @fBlue500;
   }
-
-  &--light-black {
-    --btn-bg-color: @cBgLightBlue;
-    --btn-border-color: @cBgLightBlue;
-    --btn-color: @cBlack500;
-    --btn-icon-filter: @cBlack500;
-
-    --btn-hover-bg-color: @cBgLightBlue;
-    --btn-hover-border-color: @cBgLightBlue;
-    --btn-hover-color: @cBlue500;
-    --btn-hover-icon-filter: @fBlue500;
-  }
-
-  &--white-black {
-    --btn-bg-color: @cWhite;
-    --btn-border-color: @cWhite;
-    --btn-color: @cBlack500;
-
-    --btn-hover-bg-color: fade(@cWhite200, 80);
-    --btn-hover-border-color: fade(@cWhite200, 80);
-    --btn-hover-color: @cBlue700;
-
-    --btn-disabled-bg-color: transparent;
-    --btn-disabled-border-color: fade(@cWhite, 20);
-    --btn-disabled-color: fade(@cWhite, 20);
-  }
-
   &--white {
     --btn-bg-color: @cWhite;
     --btn-border-color: @cWhite;
@@ -187,20 +135,6 @@
     --btn-hover-border-color: @cBlue100;
     --btn-hover-color: @cBlue700;
     --btn-hover-icon-filter: @fBlue700;
-  }
-
-  &--blue-border {
-    --btn-bg-color: @cWhite;
-    --btn-border-color: @cBlue600;
-    --btn-color: @cBlack500;
-    --btn-icon-filter: @fBlack;
-
-    --btn-hover-bg-color: @cBlue600;
-    --btn-hover-border-color: @cBlue600;
-    --btn-hover-color: @cWhite500;
-    --btn-hover-icon-filter: @fWhite;
-
-    --btn-border-width: 2rem;
   }
 
   &--transparent {
@@ -218,10 +152,6 @@
 
 
   // Модификаторы размера
-  &--sm {
-    --btn-height: 48rem;
-    --btn-fs: var(--fs12);
-  }
 
   &--lg {
     --btn-height: 56rem;

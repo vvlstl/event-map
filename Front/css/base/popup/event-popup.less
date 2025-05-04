@@ -1,0 +1,41 @@
+@import "../../_var";
+
+.event-popup {
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m24);
+  }
+
+  &__header {
+    max-width: calc(100% - (var(--cross-area-size, 24rem) + var(--grid-gap)));
+  }
+
+  &__title {
+    font: 500 var(--fs24) / 1.4 @font;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m12);
+  }
+
+  &__picture {
+
+    img {
+      .size(100%);
+      display: block;
+      object-fit: contain;
+    }
+  }
+
+  &__text {
+    font: 400 var(--fs16) / 1.2 @font;
+    color: @cBlack600;
+  }
+
+  &__footer {
+  }
+}

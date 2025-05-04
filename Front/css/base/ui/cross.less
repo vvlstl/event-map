@@ -1,0 +1,33 @@
+@import "../../_var.less";
+
+.cross {
+  --cross-size: 14rem;
+  --cross-area-size: 24rem;
+  --cross-line-width: 2rem;
+  --cross-line-size: calc(var(--cross-size) * 1.4); // 1.4 - коэффициент подобранный вручную так, чтобы крестик вписывался в квадрат с размерами --cross-size
+
+  .clear-link();
+  .clear-btn();
+  .size(var(--cross-area-size));
+  display: block;
+  position: relative;
+
+  &:before,
+  &:after {
+    .pseudo();
+    .size(var(--cross-line-size), var(--cross-line-width));
+    will-change: transform;
+    background-color: currentColor;
+    top: calc(50% - var(--cross-line-width) / 2);
+    left: calc(50% - var(--cross-line-size) / 2);
+    border-radius: 2rem;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
