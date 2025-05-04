@@ -5,7 +5,7 @@
 		Я кастомный компонент. <br>
 		У меня есть кнопка <br>
 
-		<button @click.prevent="click">Нажми!</button>
+		<button class="btn" @click.prevent="click">Нажми!</button>
 	</PopupWrapper>
 
 </template>

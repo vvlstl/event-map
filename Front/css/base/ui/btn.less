@@ -1,0 +1,250 @@
+@import "../../_var";
+
+@import "../../_var.less";
+
+.btn {
+  --btn-bg-color: @cBlue600;
+  --btn-border-color: @cBlue600;
+  --btn-color: @cWhite;
+  --btn-icon-filter: @fBlue600;
+
+  --btn-hover-bg-color: @cBlue700;
+  --btn-hover-border-color: @cBlue700;
+  --btn-hover-color: @cWhite;
+  --btn-hover-icon-filter: @fBlue700;
+
+  --btn-active-bg-color: color-mix(in hsl, var(--btn-hover-bg-color), @cBlack 10%);
+  --btn-active-border-color: color-mix(in hsl, var(--btn-hover-border-color), @cBlack 10%);
+  --btn-active-color: var(--btn-hover-color);
+  --btn-active-icon-filter: var(--btn-icon-filter);
+
+  --btn-disabled-bg-color: color-mix(in hsl, var(--btn-bg-color), transparent 84%);
+  --btn-disabled-border-color: color-mix(in hsl, var(--btn-border-color), transparent 84%);
+  --btn-disabled-color: var(--btn-color);
+  --btn-disabled-icon-filter: var(--btn-icon-filter);
+
+  --btn-border-width: 1rem;
+  --btn-height: 60rem;
+  --btn-icon-gap: 8rem;
+  --btn-padding: 0 var(--m24);
+  --btn-border-radius: 12rem;
+  --btn-icon-size: 24rem;
+  --btn-fw: 700;
+  --btn-fs: var(--fs16);
+
+  .clear-link();
+  .clear-btn();
+  .transit(~'opacity, color, border-color, background-color, box-shadow');
+  position: relative;
+  display: inline-flex;
+  margin: 0; // fix ненужных отступов ios
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: var(--btn-icon-gap);
+  background: var(--btn-bg-color);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  border-radius: var(--btn-border-radius);
+  color: var(--btn-color);
+  height: var(--btn-height);
+  padding: var(--btn-padding);
+  white-space: nowrap;
+  text-align: center;
+  user-select: none;
+  flex-shrink: 0;
+  font: var(--btn-fw) var(--btn-fs) / 1 @font;
+
+  @hoverRuleset: {
+    .btn-hover();
+  }
+
+  @activeRuleset: {
+    .btn-active();
+  }
+
+  .hover(@hoverRuleset: @hoverRuleset, @activeRuleset: @activeRuleset);
+
+  &__icon {
+    .container(var(--icon-size, auto));
+    position: relative;
+
+    picture, img, svg {
+      .size(100%);
+      display: block;
+      object-fit: contain;
+    }
+
+    &--colored {
+      filter: var(--btn-icon-filter);
+    }
+  }
+
+  &__text {
+    flex: 1;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // Модификаторы стейта
+  &--disabled,
+  &:disabled,
+  &.swiper-button-lock,
+  &[disabled] {
+    .btn-disabled();
+  }
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none !important;
+  }
+
+  // Модификаторы цвета
+  &--pink {
+    --btn-bg-color: @cPink500;
+    --btn-border-color: @cPink500;
+    --btn-color: @cWhite;
+    --btn-icon-filter: @fWhite;
+
+    --btn-hover-bg-color: @cPink600;
+    --btn-hover-border-color: @cPink600;
+    --btn-hover-color: @cWhite;
+    --btn-hover-icon-filter: @fWhite;
+  }
+
+
+  &--blue-500 {
+    --btn-bg-color: @cBlue500;
+    --btn-border-color: @cBlue500;
+    --btn-color: @cWhite;
+    --btn-icon-filter: @fWhite;
+
+    --btn-hover-bg-color: @cBlue400;
+    --btn-hover-border-color: @cBlue400;
+    --btn-hover-color: @cWhite;
+    --btn-hover-icon-filter: @fWhite;
+  }
+
+  &--dark-blue {
+    --btn-border-color: @cDarkBlue;
+    --btn-color: @cDarkBlue;
+    --btn-bg-color: transparent;
+
+    --btn-hover-border-color: @cBlue500;
+    --btn-hover-color: @cBlue500;
+    --btn-hover-bg-color: transparent;
+
+    --btn-disabled-border-color: @cBlack200;
+    --btn-disabled-color: @cBlack200;
+  }
+
+  &--light {
+    --btn-bg-color: @cBlue50;
+    --btn-border-color: @cBlue50;
+    --btn-color: @cBlue500;
+    --btn-icon-filter: @fBlue500;
+
+    --btn-hover-bg-color: @cBlue100;
+    --btn-hover-border-color: @cBlue100;
+    --btn-hover-color: @cBlue500;
+    --btn-hover-icon-filter: @fBlue500;
+  }
+
+  &--light-black {
+    --btn-bg-color: @cBgLightBlue;
+    --btn-border-color: @cBgLightBlue;
+    --btn-color: @cBlack500;
+    --btn-icon-filter: @cBlack500;
+
+    --btn-hover-bg-color: @cBgLightBlue;
+    --btn-hover-border-color: @cBgLightBlue;
+    --btn-hover-color: @cBlue500;
+    --btn-hover-icon-filter: @fBlue500;
+  }
+
+  &--white-black {
+    --btn-bg-color: @cWhite;
+    --btn-border-color: @cWhite;
+    --btn-color: @cBlack500;
+
+    --btn-hover-bg-color: fade(@cWhite200, 80);
+    --btn-hover-border-color: fade(@cWhite200, 80);
+    --btn-hover-color: @cBlue700;
+
+    --btn-disabled-bg-color: transparent;
+    --btn-disabled-border-color: fade(@cWhite, 20);
+    --btn-disabled-color: fade(@cWhite, 20);
+  }
+
+  &--white {
+    --btn-bg-color: @cWhite;
+    --btn-border-color: @cWhite;
+    --btn-color: @cBlue700;
+    --btn-icon-filter: @fBlue700;
+
+    --btn-hover-bg-color: @cBlue100;
+    --btn-hover-border-color: @cBlue100;
+    --btn-hover-color: @cBlue700;
+    --btn-hover-icon-filter: @fBlue700;
+  }
+
+  &--blue-border {
+    --btn-bg-color: @cWhite;
+    --btn-border-color: @cBlue600;
+    --btn-color: @cBlack500;
+    --btn-icon-filter: @fBlack;
+
+    --btn-hover-bg-color: @cBlue600;
+    --btn-hover-border-color: @cBlue600;
+    --btn-hover-color: @cWhite500;
+    --btn-hover-icon-filter: @fWhite;
+
+    --btn-border-width: 2rem;
+  }
+
+  &--transparent {
+    --btn-bg-color: transparent;
+    --btn-border-color: transparent;
+
+    --btn-hover-color: @cBlue500;
+    --btn-hover-bg-color: transparent;
+    --btn-hover-border-color: transparent;
+
+    --btn-active-color: @cBlue500;
+    --btn-active-bg-color: transparent;
+    --btn-active-border-color: transparent;
+  }
+
+
+  // Модификаторы размера
+  &--sm {
+    --btn-height: 48rem;
+    --btn-fs: var(--fs12);
+  }
+
+  &--lg {
+    --btn-height: 56rem;
+  }
+
+  // Типы кнопок
+  &--tool {
+    .size(var(--tool-btn-size, 56rem));
+    border-radius: 50%;
+    padding: 0;
+  }
+
+  &--socials {
+    --icon-size: var(--socials-btn-icon-size, 16rem);
+
+    .size(var(--socials-btn-size, 24rem));
+    border-radius: 50%;
+    padding: 0;
+  }
+
+  &--slider-arrow {
+    .size(var(--alider-arrow-size, 40rem));
+    border-radius: 50%;
+    padding: 0;
+  }
+}
