@@ -7,7 +7,7 @@ class Settings(BaseSettings):
         case_sensitive=True,
         extra="allow"
     )
-    RABBITMQ_URL: str
+    RABBITMQ_URL: str = "amqp://user:password@localhost:5672"
 
     BACKEND_URL: str = "0.0.0.0:8000"
 
