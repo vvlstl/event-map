@@ -143,6 +143,8 @@ export class MapManager {
      * Проверка, существует ли карта
      */
     isInitialized(): boolean {
-        return !!this.map && !(this.map as any)._stopped;
+        if (!this.map) return false;
+        const container = this.map.getContainer();
+        return !!container && container.hasChildNodes();
     }
 }
