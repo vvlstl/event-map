@@ -4,6 +4,7 @@ import {VueLoaderPlugin} from "vue-loader";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {globSync} from "glob";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 
 type TMode = 'development' | 'production';
 
@@ -29,6 +30,9 @@ export default (env: EnvVariables) => {
                 filename: '[name].[contenthash].css',
             }),
             new CssMinimizerPlugin(),
+            new SpriteLoaderPlugin({
+                plainSprite: true
+            })
         ],
         module: {
             rules: [
@@ -67,7 +71,7 @@ export default (env: EnvVariables) => {
                                     // Динамически читаем файлы при каждой компиляции (рекурсивно во всех подпапках)
                                     const relativeLessFiles = globSync(
                                         path.resolve(__dirname, 'css/**/', '*.less'),
-                                        { nodir: true }
+                                        {nodir: true}
                                     ).map(file => {
                                         // Получаем относительный путь от папки css
                                         const relativePath = path.relative(
@@ -85,6 +89,23 @@ export default (env: EnvVariables) => {
                         }
                     ],
                 },
+                {
+                    test: /\.svg$/,
+                    include: path.resolve(__dirname, 'images/symbol'),
+                    use: [
+                        {
+                            loader: 'svg-sprite-loader',
+                            options: {
+                                extract: true,
+                                spriteFilename: path.resolve(__dirname, 'build/symbol.svg'),
+                                publicPath: '/build/',
+                                symbolId: '[name]',
+                                esModule: false
+                            }
+                        },
+                        'svgo-loader'
+                    ]
+                },
             ],
         },
         resolve: {
@@ -98,6 +119,7 @@ export default (env: EnvVariables) => {
             open: true,
             static: {
                 directory: path.resolve(__dirname, 'build'),
+                publicPath: '/build/',
             },
             historyApiFallback: false,
         }

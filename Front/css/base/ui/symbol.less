@@ -1,0 +1,26 @@
+@import "../../_var";
+
+.symbol {
+  --svg-size: 20rem;
+
+  .size(var(--svg-size));
+  .transit(transform);
+  display: block;
+  fill: currentColor;
+
+  &--evenodd {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+  }
+
+  &--stroke {
+    fill: transparent !important;
+    stroke: currentColor;
+    stroke-width: 1rem;
+  }
+
+  &--invert-x {
+    transform: rotate(180deg);
+  }
+}
+

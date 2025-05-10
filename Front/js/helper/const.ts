@@ -7,6 +7,4 @@ export const BREAKPOINTS = {
     xxl: 1940,
 };
 
-const svgHash = getComputedStyle(document.documentElement).getPropertyValue('--sh').replaceAll('"', '');
-
-export const SYMBOLS_SVG: string = '/local/build/symbols.svg?' + svgHash;
+export const SYMBOLS_SVG: string = '/build/symbol.svg';
