@@ -1,0 +1,9 @@
+services:
+  node:
+    build:
+      context: ./Front
+    ports:
+      - "5000:5000"
+    container_name: frontend
+    volumes:
+      - ./Front:/app

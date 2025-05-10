@@ -9,7 +9,6 @@
 	import Map from "~/js/components/Map.vue";
 	import InfoEvents from "~/js/components/info-events/InfoEvents.vue";
 	import {InfoEventsData} from "~/markupdata/InfoEventsData";
-	import {computed} from "vue";
 
 	const eventItems = InfoEventsData.getMockEvents(5);
 

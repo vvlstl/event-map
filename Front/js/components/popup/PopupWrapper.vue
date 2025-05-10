@@ -1,6 +1,6 @@
 <template>
 	<VueFinalModal
-		v-slot="{ close }"
+		v-slot="{ close }: ModalSlotProps"
 		v-bind="$attrs"
 		class="popup"
 		:class="{
@@ -28,12 +28,10 @@
 			<button @click="close" class="cross link"></button>
 		</div>
 		<slot/>
-
 	</VueFinalModal>
 </template>
 
 <script setup lang="ts">
-
 	import {ref} from 'vue';
 	import {VueFinalModalComponent} from 'vue-final-modal';
 	import {lockScroll} from "~/js/helper/lock-scroll";
@@ -45,6 +43,9 @@
 
 	const props = defineProps<TComponentProps>();
 	const popupElement = ref<null | VueFinalModalComponent>(null);
+	interface ModalSlotProps {
+		close: () => void;
+	}
 
 	function onBeforeOpen() {
 		lockScroll(true, popupElement.value?.$el);
@@ -53,6 +54,4 @@
 	function onClosed() {
 		lockScroll(false, popupElement.value?.$el);
 	}
-
-
 </script>
