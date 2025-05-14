@@ -5,7 +5,7 @@ COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
 COPY ./ /var/www/backend
 WORKDIR /var/www/backend
 
-RUN composer install --optimize-autoloader --no-dev
+#RUN composer install --optimize-autoloader --no-dev
 
 ARG PUID=1000
 ARG PGID=1000
