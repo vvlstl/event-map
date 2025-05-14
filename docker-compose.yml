@@ -7,3 +7,22 @@ services:
     container_name: frontend
     volumes:
       - ./Front:/app
+
+  php-fpm:
+    container_name: php-fpm
+    build:
+      context: ./Backend
+    volumes:
+      - ./Backend:/var/www/backend
+
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Front:/var/www/frontend
+      - ./Backend:/var/www/backend
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php-fpm
