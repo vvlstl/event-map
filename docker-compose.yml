@@ -37,3 +37,20 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+
+  postgresql:
+    container_name: postgres
+    image: postgres:17.5-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: event_map
+
+  adminer:
+    container_name: adminer
+    image: adminer:5-standalone
+    restart: always
+    ports:
+      - "9000:8080"

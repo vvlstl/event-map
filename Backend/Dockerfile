@@ -1,5 +1,8 @@
 FROM php:8.3-fpm-alpine
 
+RUN apk add --no-cache libpq-dev shadow && \
+    docker-php-ext-install pdo pdo_pgsql
+
 COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
 
 COPY ./ /var/www/backend
@@ -10,8 +13,7 @@ WORKDIR /var/www/backend
 ARG PUID=1000
 ARG PGID=1000
 
-RUN apk --no-cache add shadow && \
-    groupmod -o -g ${PGID} www-data && \
+RUN groupmod -o -g ${PGID} www-data && \
     usermod -o -u ${PUID} -g www-data www-data
 
 CMD php-fpm
