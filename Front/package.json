@@ -47,8 +47,10 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@vueform/multiselect": "^2.6.11",
     "body-scroll-lock": "^4.0.0-beta.0",
     "leaflet": "^1.9.4",
+    "maska": "^3.1.1",
     "tiny-emitter": "^2.1.0",
     "vue": "^3.5.13",
     "vue-final-modal": "^3.4.11"
