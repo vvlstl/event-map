@@ -7,6 +7,9 @@ services:
     container_name: frontend
     volumes:
       - ./Front:/app
+    tty: true
+    stdin_open: true
+    command: /bin/sh
 
   php-fpm:
     container_name: php-fpm

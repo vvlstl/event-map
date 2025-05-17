@@ -17,3 +17,8 @@ docker compose down
 ```shell
 docker exec php-fpm php artisan db:seed
 ```
+
+Запуск сборки фронта:
+```shell
+docker exec frontend npm run start
+```
