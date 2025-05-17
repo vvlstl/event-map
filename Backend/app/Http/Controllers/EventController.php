@@ -11,7 +11,7 @@ use Illuminate\Contracts\Support\Responsable;
 
 class EventController extends Controller
 {
-    public function show(Event $event): Responsable
+    public function detail(Event $event): Responsable
     {
         return new ApiResponse(new EventResource($event));
     }

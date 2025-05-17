@@ -8,7 +8,7 @@ class EventController
      * Получить событие
      *
      * @OA\Get(
-     *     path="/api/events/{id}",
+     *     path="/api/event/{id}",
      *     tags={"События"},
      *
      *     @OA\Parameter(
@@ -42,7 +42,7 @@ class EventController
      *     ),
      * ),
      */
-    public function show()
+    public function detail()
     {
     }
 
@@ -50,7 +50,7 @@ class EventController
      * Получить список всех категорий событий
      *
      * @OA\Get(
-     *     path="/api/categories/list",
+     *     path="/api/category/list",
      *     tags={"События"},
      *
      *     @OA\Response(
