@@ -35,7 +35,7 @@ export class MapManager {
             {
                 attribution: '© Yandex Maps',
                 maxZoom: 19,
-                subdomains: ['01', '02', '03', '04'] // Опционально, для балансировки нагрузки
+                subdomains: ['01', '02', '03', '04'],
             }
         ).addTo(this.map);
     }
