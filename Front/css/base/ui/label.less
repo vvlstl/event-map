@@ -1,0 +1,22 @@
+@import "../../_var";
+
+.label {
+  --label-height: 24rem;
+  --label-padding: 0 var(--m8);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: var(--m4);
+  background: #FF4373;
+  border-radius: 8rem;
+  color: @cWhite;
+  height: var(--label-height);
+  padding: var(--label-padding);
+  white-space: nowrap;
+  text-align: center;
+  user-select: none;
+  flex-shrink: 0;
+  font: 500 var(--fs14) / 1 @font;
+}

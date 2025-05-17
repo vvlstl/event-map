@@ -1,6 +1,7 @@
-import {TEventCard} from "~/types/TEventCard";
+import {TEventCard} from "~/types/info-events/TEventCard";
 import {faker} from "@faker-js/faker/locale/en";
 import {TPicture} from "~/types/TPicture";
+import {TLabel} from "~/types/TLabel";
 
 export class InfoEventsData {
     public static getMockEvents(count: number): TEventCard[] {
@@ -19,14 +20,28 @@ export class InfoEventsData {
                 title: name,
             };
 
+            const label: TLabel = {
+                text: faker.lorem.words(1),
+                type: faker.helpers.arrayElement(['interests', 'moves', 'social', 'development']),
+            }
+
             return {
                 id: i + 1,
                 name: name,
-                description: faker.lorem.paragraph(),
-                address: faker.location.streetAddress(),
-                date: faker.date.future().toLocaleDateString('ru-RU'),
-                source: faker.helpers.arrayElement(['internal', 'external']),
+                text: faker.lorem.paragraph(),
+                tags: faker.helpers.arrayElement([
+                    [
+                        '#настолки',
+                        '#D&D',
+                    ],
+                    [
+                        '#настолки',
+                        '#гончарное дело',
+                        '#свечеварение',
+                    ]
+                ]),
                 picture: picture,
+                label: label,
                 lat: faker.number.float({
                     min: barnaulBounds.latMin,
                     max: barnaulBounds.latMax,

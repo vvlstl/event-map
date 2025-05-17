@@ -1,9 +1,21 @@
 @import "../../_var";
 
 .app {
-  .column-property(--map, 16, 24);
-  .column-property(--events, 8, 24);
+  position: relative;
   display: grid;
-  grid-template-columns: var(--map) var(--events);
-  gap: var(--grid-gap);
+  margin-left: calc(-1 * var(--full-page-gutter));
+  margin-right: calc(-1 * var(--full-page-gutter));
+
+  &__info-event {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    max-width: 460rem;
+  }
+
+  &__map {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 0;
+  }
 }

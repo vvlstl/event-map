@@ -1,7 +1,7 @@
 import L from "leaflet";
 import {TMarker} from "~/types/TMarker";
 import EventBus from "~/js/helper/event-bus";
-import {TEventCard} from "~/types/TEventCard";
+import {TEventCard} from "~/types/info-events/TEventCard";
 import {show} from "~/js/controllers/popup";
 
 export class MapManager {
@@ -112,7 +112,7 @@ export class MapManager {
     onMarkerClick(latlng: L.LatLng, content: TEventCard): void {
         show('event', {
             title: content.name,
-            text: content.description,
+            text: content.text,
             picture: content.picture,
         });
     }

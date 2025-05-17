@@ -22,6 +22,8 @@
 
 	const props = defineProps<TComponentProps>();
 
+	//const modelValue = defineModel();
+
 	const maskOptions = computed((): MaskInputOptions | null => {
 		return props.field.options?.mask ?? null;
 	});

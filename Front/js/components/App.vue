@@ -1,7 +1,7 @@
 <template>
 	<div class="app">
-		<Map :markers="eventItems"/>
-		<InfoEvents :items="eventItems"/>
+		<InfoEvents :items="eventItems" class="app__info-event"/>
+		<Map :markers="eventItems" class="app__map"/>
 	</div>
 	<ModalsContainer/>
 </template>

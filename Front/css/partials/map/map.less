@@ -1,6 +1,9 @@
 @import "../../_var";
 
 .map {
+  --btn-height: 40rem;
+
+  position: relative;
   max-height: 100vh;
 
   .leaflet-control-attribution {
@@ -10,5 +13,9 @@
   // Добавляем CSS-фильтр
   .leaflet-layer {
     filter: grayscale(100%) brightness(1) contrast(1);
+  }
+
+  .leaflet-control{
+    display: none !important;
   }
 }

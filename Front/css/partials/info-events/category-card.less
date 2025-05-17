@@ -1,0 +1,74 @@
+@import "../../_var";
+
+.category-card {
+  display: flex;
+  border-radius: 12rem;
+  background: @cWhite;
+  overflow: hidden;
+  border: 1rem solid #E1E3E9;
+
+  &__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--m12);
+    box-sizing: border-box;
+    padding: var(--m16);
+  }
+
+  &__name {
+    font: 800 var(--fs20) / 1 @font;
+    color: #3C3C3C;
+  }
+
+  &__tags {
+    font: 300 var(--fs14) / 1 @font;
+    color: #5B5B5B;
+  }
+
+  &__icon {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 var(--m16);
+    color: @cWhite;
+
+    svg {
+      --svg-size: 32rem;
+    }
+  }
+
+  &--interests {
+    .category-card {
+      &__icon {
+        background: #FF4373;
+      }
+    }
+  }
+
+  &--moves {
+    .category-card {
+      &__icon {
+        background: #FF43D0;
+      }
+    }
+  }
+
+  &--development {
+    .category-card {
+      &__icon {
+        background: #4369FF;
+      }
+    }
+  }
+
+  &--social {
+    .category-card {
+      &__icon {
+        background: #FFD42A;
+      }
+    }
+  }
+}

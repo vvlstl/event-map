@@ -68,22 +68,24 @@ export default (env: EnvVariables) => {
                             loader: 'less-loader',
                             options: {
                                 additionalData: (content: string, loaderContext: any) => {
-                                    // Динамически читаем файлы при каждой компиляции (рекурсивно во всех подпапках)
-                                    const relativeLessFiles = globSync(
+                                    // Получаем список всех less-файлов (кроме текущего)
+                                    const allLessFiles = globSync(
                                         path.resolve(__dirname, 'css/**/', '*.less'),
-                                        {nodir: true}
-                                    ).map(file => {
-                                        // Получаем относительный путь от папки css
-                                        const relativePath = path.relative(
-                                            path.resolve(__dirname, 'css'),
-                                            file
-                                        );
-                                        return relativePath.split(path.sep).join('/'); // Нормализуем разделители путей
-                                    });
+                                        { nodir: true }
+                                    ).filter(file => file !== loaderContext.resourcePath) // Исключаем текущий файл
+                                        .map(file => {
+                                            const relativePath = path.relative(
+                                                path.resolve(__dirname, 'css'),
+                                                file
+                                            );
+                                            return relativePath.split(path.sep).join('/');
+                                        });
 
-                                    return relativeLessFiles
-                                        .map((file: string) => `@import "${file}";`)
-                                        .join('\n') + content;
+                                    // Добавляем новые импорты в конец содержимого
+                                    return content + '\n' +
+                                        allLessFiles
+                                            .map((file: string) => `@import "${file}";`)
+                                            .join('\n');
                                 }
                             }
                         }

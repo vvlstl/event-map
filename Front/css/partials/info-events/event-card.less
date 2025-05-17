@@ -1,54 +1,101 @@
 @import "../../_var";
 
 .event-card {
-  border-radius: 12rem;
-  background: @cWhite;
-  box-shadow: 0 4rem 12rem fade(@cBlack, 10);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--m16);
   cursor: pointer;
 
-  &__image {
-    .size(100%, 180rem);
+  .hover({
+    .event-card {
+      &__title {
+        color: #1F40B7;
+      }
+
+      &__picture {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  });
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m16);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: var(--m16);
+  }
+
+  &__category {
+  }
+
+  &__tags {
+    display: flex;
+    align-items: center;
+    gap: var(--m8);
+    font: 300 var(--fs14) / 1 @font;
+    color: #5B5B5B;
+  }
+
+  &__title {
+    .transit(cover);
+    font: 800 var(--fs18) / 1 @font;
+    color: #3C3C3C;
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: minmax(150rem, 0) 1fr;
+    gap: var(--m22);
+  }
+
+  &__picture {
+    .picture(@fit: cover);
+    width: 100%;
+    max-width: 150rem;
+    max-height: 150rem;
+    border-radius: 8rem;
 
     img {
-      .size(100%);
-      display: block;
-      object-fit: cover;
+      .transit(transform, @time: @transitTimeMedium);
     }
   }
 
   &__content {
-    box-sizing: border-box;
-    padding: var(--m16);
-  }
-
-  &__title {
-    font: 400 var(--fs18) / 1.4 @font;
-    font-weight: bold;
-    margin: var(--m8) 0;
-    color: @cBlack800;
-  }
-
-  &__description {
-    font: 400 var(--fs14) / 1.4 @font;
-    color: @cBlack600;
-    margin-bottom: var(--m12);
-  }
-
-  &__details {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     gap: var(--m12);
-    font: 400 var(--fs12) / 1.4 @font;
-    color: @cBlack300;
-    margin-bottom: var(--m8);
   }
 
-  &__tag {
-    display: inline-block;
-    padding: var(--m4) var(--m8);
-    border-radius: var(--m4);
-    font: 400 var(--fs12) / 1.4 @font;
-    background: @cBlue200;
-    color: @cBlue600;
+  &__text {
+    .line-clamp(7);
+    flex: 1 1 auto;
+    font: 300 var(--fs14) / 1.2 @font;
+    color: #5B5B5B;
+  }
+
+  &__footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--grid-gap);
+    font: 500 var(--fs12) / 1 @font;
+    color: #1F40B7;
+  }
+
+  &__more-icon {
+    .container(20rem);
+
+    svg {
+      --svg-size: 10rem;
+    }
   }
 }

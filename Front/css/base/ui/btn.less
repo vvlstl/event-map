@@ -153,13 +153,15 @@
 
   // Модификаторы размера
 
-  &--lg {
-    --btn-height: 56rem;
+  &--sm {
+    --btn-height: 40rem;
+    --btn-border-radius: 2rem
   }
 
   // Типы кнопок
   &--square {
     .size(var(--btn-height));
+    padding: 0;
   }
 
   &--slider-arrow {

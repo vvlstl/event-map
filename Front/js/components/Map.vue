@@ -1,5 +1,5 @@
 <template>
-	<div id="map" class="map"/>
+	<div id="map" class="map"></div>
 </template>
 
 <script setup lang="ts">
@@ -7,7 +7,7 @@
 	import { MapManager } from "~/models/MapManager";
 	import EventBus from "~/js/helper/event-bus";
 	import { LatLng } from "leaflet";
-	import { TEventCard } from "~/types/TEventCard";
+	import { TEventCard } from "~/types/info-events/TEventCard";
 
 	type TComponentProps = {
 		markers: TEventCard[];
