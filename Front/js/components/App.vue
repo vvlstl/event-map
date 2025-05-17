@@ -10,6 +10,6 @@
 	import InfoEvents from "~/js/components/info-events/InfoEvents.vue";
 	import {InfoEventsData} from "~/markupdata/InfoEventsData";
 
-	const eventItems = InfoEventsData.getMockEvents(5);
+	const eventItems = InfoEventsData.getMockEvents(24);
 
 </script>

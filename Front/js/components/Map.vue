@@ -6,10 +6,9 @@
 	import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
 	import {MapManager} from "~/models/MapManager";
 	import EventBus from "~/js/helper/event-bus";
-	import {LatLng, Icon} from "leaflet";
+	import {Icon, LatLng} from "leaflet";
 	import {TEventCard} from "~/types/info-events/TEventCard";
 	import {P_PICTURES} from "~/js/helper/const";
-	import VuePicture from "~/js/components/common/VuePicture.vue";
 
 	type TComponentProps = {
 		markers: TEventCard[];
