@@ -62,6 +62,13 @@ class Event
 
     /**
      * @OA\Property(
+     *     title="Детальное описание",
+     * )
+     */
+    protected string $detailText;
+
+    /**
+     * @OA\Property(
      *     title="Дата и время",
      * )
      */

@@ -117,4 +117,27 @@ class EventController
     public function raw()
     {
     }
+
+    /**
+     * Сохранить данные о событии
+     *
+     * @OA\Post(
+     *     path="/api/event/save-event",
+     *     tags={"События"},
+     *
+     *     @OA\RequestBody(
+     *         description="Данные события",
+     *         @OA\JsonContent(ref="#/components/schemas/SaveEventRequest"),
+     *     ),
+     *
+     *     @OA\Response(
+     *         response="200",
+     *         description="Результат выполнения запроса",
+     *         @OA\JsonContent(ref="#/components/schemas/ApiResponse"),
+     *     ),
+     * ),
+     */
+    public function saveEvent()
+    {
+    }
 }

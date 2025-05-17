@@ -14,8 +14,9 @@ return new class extends Migration {
             $table->float('latitude');
             $table->float('longitude');
             $table->timestamp('datetime');
-            $table->text('preview_text')->comment('Краткое описание');
-            $table->text('clear_original_text')->comment('Чистый оригинальный текст');
+            $table->text('preview_text');
+            $table->text('detail_text');
+            $table->string('type');
             $table->timestamps();
             $table->softDeletes();
         });
