@@ -3,6 +3,7 @@ import {TMarker} from "~/types/TMarker";
 import EventBus from "~/js/helper/event-bus";
 import {TEventCard} from "~/types/info-events/TEventCard";
 import {show} from "~/js/controllers/popup";
+import {marked} from "marked";
 
 export class MapManager {
     private readonly map: L.Map;
@@ -112,7 +113,7 @@ export class MapManager {
     onMarkerClick(latlng: L.LatLng, content: TEventCard): void {
         show('event', {
             title: content.name,
-            text: content.text,
+            text: marked(content.detailText),
             picture: content.picture,
         });
     }

@@ -28,7 +28,21 @@ export class InfoEventsData {
             return {
                 id: i + 1,
                 name: name,
-                text: faker.lorem.paragraph(),
+                previewText: faker.lorem.paragraph(),
+                detailText: `
+## ${faker.lorem.sentence()}
+
+${faker.lorem.paragraphs(2)}
+
+**Основные моменты:**
+- ${faker.lorem.sentence()}
+- ${faker.lorem.sentence()}
+- ${faker.lorem.sentence()}
+
+*Дата проведения: ${faker.date.future().toLocaleDateString()}*
+
+[Подробнее](${faker.internet.url()})
+    `.trim(),
                 tags: faker.helpers.arrayElement([
                     [
                         '#настолки',

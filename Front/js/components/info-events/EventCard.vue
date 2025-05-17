@@ -27,7 +27,7 @@
 				<VuePicture v-bind="item.picture"/>
 			</div>
 			<div class="event-card__content">
-				<div class="event-card__text" v-html="item.text"/>
+				<div class="event-card__text" v-html="item.previewText"/>
 				<div class="event-card__footer">
 					<span>Подробнее</span>
 					<span class="event-card__more-icon"><SvgSymbol name="more"/></span>
@@ -41,6 +41,7 @@
 	import {show} from "~/js/controllers/popup";
 	import VuePicture from "~/js/components/common/VuePicture.vue";
 	import SvgSymbol from "~/js/components/common/SvgSymbol.vue";
+	import {marked} from "marked";
 
 	type TComponentProps = {
 		item: TEventCard,
@@ -51,7 +52,7 @@
 	function openPopup() {
 		show('event', {
 			title: props.item.name,
-			text: props.item.description,
+			text: marked(props.item.detailText),
 			picture: props.item.picture,
 		});
 	}

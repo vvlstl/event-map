@@ -4,7 +4,8 @@ import {TLabel} from "~/types/TLabel";
 export type TEventCard = {
     id: number,
     name: string,
-    text: string,
+    previewText: string,
+    detailText: string,
     tags: string[],
     label: TLabel,
     picture: TPicture,
