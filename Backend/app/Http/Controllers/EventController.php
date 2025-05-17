@@ -10,6 +10,7 @@ use App\Http\Responses\ApiResponse;
 use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\RawEvent;
+use App\Services\DaDataService;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Carbon;
 
@@ -30,14 +31,17 @@ class EventController extends Controller
         return new ApiResponse(RawEventResource::make($rawEvent));
     }
 
-    public function saveEvent(SaveEventRequest $request): Responsable
+    public function saveEvent(SaveEventRequest $request, DaDataService $daDataService): Responsable
     {
+        $address = $request->post('address');
+        $coords = $daDataService->getCoords($address);
+
         try {
             $result = Event::make([
                 'title'        => $request->post('title'),
                 'address'      => $request->post('address'),
-                'latitude'     => 0, //todo geocode
-                'longitude'    => 0,
+                'latitude'     => $coords[0] ?? null,
+                'longitude'    => $coords[1] ?? null,
                 'datetime'     => new Carbon($request->post('datetime')),
                 'preview_text' => $request->post('previewText'),
                 'detail_text'  => $request->post('detailText'),

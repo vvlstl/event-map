@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('address');
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
             $table->timestamp('datetime');
             $table->text('preview_text');
             $table->text('detail_text');
