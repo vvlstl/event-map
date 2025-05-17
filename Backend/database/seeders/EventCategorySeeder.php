@@ -37,7 +37,7 @@ class EventCategorySeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name'       => 'Спорт',
+                'name'       => 'Саморазвитие',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
