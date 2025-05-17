@@ -13,8 +13,9 @@ return new class extends Migration {
             $table->string('address');
             $table->float('latitude');
             $table->float('longitude');
-            $table->string('url');
             $table->timestamp('datetime');
+            $table->text('preview_text')->comment('Краткое описание');
+            $table->text('clear_original_text')->comment('Чистый оригинальный текст');
             $table->timestamps();
             $table->softDeletes();
         });

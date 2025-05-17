@@ -9,7 +9,6 @@ namespace App\Swagger\Http\Models;
  *     title="Событие",
  * )
  */
-
 class Event
 {
     /**
@@ -53,6 +52,13 @@ class Event
      * )
      */
     protected string $url;
+
+    /**
+     * @OA\Property(
+     *     title="Короткое описание",
+     * )
+     */
+    protected string $previewText;
 
     /**
      * @OA\Property(

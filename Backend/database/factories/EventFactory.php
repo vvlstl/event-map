@@ -13,14 +13,15 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'      => $this->faker->word(),
-            'address'    => $this->faker->address(),
-            'latitude'   => $this->faker->latitude(),
-            'longitude'  => $this->faker->longitude(),
-            'url'        => $this->faker->url(),
-            'datetime'   => $this->faker->dateTime(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'title'               => $this->faker->word(),
+            'address'             => $this->faker->address(),
+            'latitude'            => $this->faker->latitude(),
+            'longitude'           => $this->faker->longitude(),
+            'datetime'            => $this->faker->dateTime(),
+            'preview_text'        => $this->faker->text(),
+            'clear_original_text' => $this->faker->text(),
+            'created_at'          => Carbon::now(),
+            'updated_at'          => Carbon::now(),
         ];
     }
 }

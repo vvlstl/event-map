@@ -12,13 +12,14 @@ class EventResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'         => $this->id,
-            'title'      => $this->title,
-            'address'    => $this->address,
-            'latitude'   => $this->latitude,
-            'longitude'  => $this->longitude,
-            'url'        => $this->url,
-            'datetime'   => $this->datetime->toString(),
+            'id'          => $this->id,
+            'title'       => $this->title,
+            'address'     => $this->address,
+            'latitude'    => $this->latitude,
+            'longitude'   => $this->longitude,
+            'url'         => $this->rawEvent->url,
+            'previewText' => $this->preview_text,
+            'datetime'    => $this->datetime->toString(),
         ];
     }
 }

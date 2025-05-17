@@ -5,7 +5,7 @@ namespace App\Swagger\Http\Controllers;
 class EventController
 {
     /**
-     * Получить список типов, тегов и периодов напоминания
+     * Получить событие
      *
      * @OA\Get(
      *     path="/api/events/{id}",
@@ -43,6 +43,36 @@ class EventController
      * ),
      */
     public function show()
+    {
+    }
+
+    /**
+     * Получить список всех категорий событий
+     *
+     * @OA\Get(
+     *     path="/api/categories/list",
+     *     tags={"События"},
+     *
+     *     @OA\Response(
+     *         response="200",
+     *         description="Результат выполнения запроса",
+     *         @OA\JsonContent(
+     *             allOf={
+     *                 @OA\Schema(ref="#/components/schemas/ApiResponse"),
+     *                 @OA\Schema(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="data",
+     *                         type="array",
+     *                         @OA\Items(ref="#/components/schemas/EventCategory"),
+     *                     )
+     *                )
+     *             }
+     *         ),
+     *     ),
+     * ),
+     */
+    public function categoryList()
     {
     }
 }
