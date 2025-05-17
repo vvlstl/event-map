@@ -7,4 +7,4 @@ COPY .env ./
 COPY main.py ./
 COPY src/ ./src/
 
-RUN ["uv", "run", "main.py"]
+CMD ["uv", "run", "main.py"]
