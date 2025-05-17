@@ -107,21 +107,38 @@ export default (env: EnvVariables) => {
                         'svgo-loader'
                     ]
                 },
+                {
+                    test: /\.(png|jpe?g|gif|webp|avif)$/i,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'images/[name][ext]'
+                    }
+                },
             ],
         },
         resolve: {
             extensions: ['.tsx', '.ts', '.js', '.vue'],
             alias: {
                 '~/*': path.resolve(__dirname, '/*'),
+                '@pictures': path.resolve(__dirname, 'pictures'),
             },
         },
         devServer: {
             port: 5000,
             open: true,
-            static: {
-                directory: path.resolve(__dirname, 'build'),
-                publicPath: '/build/',
-            },
+            static: [
+                {
+                    directory: path.resolve(__dirname, 'build'),
+                    publicPath: '/build/',
+                },
+                // Добавьте это для обслуживания статических файлов из pictures
+                {
+                    directory: path.resolve(__dirname, 'pictures'),
+                    publicPath: '/pictures/',
+                    serveIndex: true,
+                    watch: true,
+                }
+            ],
             historyApiFallback: false,
         }
     };

@@ -1,7 +1,7 @@
-import Leaflet from "leaflet";
+import L from "leaflet";
 
 export type TMarker = {
     lat: number;
     lng: number;
-    options?: Leaflet.MarkerOptions
+    options?: L.MarkerOptions;
 }
