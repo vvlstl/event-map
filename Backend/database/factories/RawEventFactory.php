@@ -14,7 +14,7 @@ class RawEventFactory extends Factory
     {
         return [
             'url'        => $this->faker->url(),
-            'raw_text'   => $this->faker->randomHtml(),
+            'raw_text'   => $this->faker->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
