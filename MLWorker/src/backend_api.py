@@ -1,12 +1,12 @@
 import aiohttp
+from src.config import Settings, settings
 
 class BackendClient:
-    def __init__(
-        self,
-        base_url: str,
-        timeout: int = 10
+    def __init__(self,
+    settings: Settings,
+    timeout: int = 10
     ):
-        self.base_url = base_url
+        self.base_url = settings.BACKEND_URL
         self.timeout = aiohttp.ClientTimeout(total=timeout)
 
     async def get_categories(self):
@@ -21,6 +21,7 @@ class BackendClient:
         #         return None
         #
         #
+        print("Получены категории")
         return [
             {"name": "finance", "id": 1},
             {"name": "politics", "id": 2},
@@ -29,13 +30,4 @@ class BackendClient:
             {"name": "other", "id": 5}
         ]
 
-
-
-async def main():
-    client = BackendClient(base_url="http://httpbin.org")
-    result = await client.get_categories()
-    print(result)
-
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
+backend_client = BackendClient(settings)

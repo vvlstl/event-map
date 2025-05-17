@@ -1,4 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from src.backend_api import backend_client
+from enum import Enum
 
 class ProcessorContext(BaseModel):
     """
@@ -11,3 +13,11 @@ class NewsClearContext(ProcessorContext):
 
 class NewsParseContext(NewsClearContext):
     pass
+
+class NewsType(str, Enum):
+    EVENT = "event"
+    OTHER = "other"
+
+class ClearNewsModel(BaseModel):
+    text: str = Field(description="Исходный текст.")
+    summary: str = Field(description="Суммаризированый текст в один абзац.")
