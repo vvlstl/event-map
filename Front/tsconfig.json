@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "outDir": "./build/",
-    "noImplicitAny": true,
+    "declaration": false,
+    "noImplicitAny": false,
     "module": "ESNext",
-    "jsx": "react",
+    "jsx": "preserve",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "sourceMap": true,
+    "strict": true,
+    "experimentalDecorators": true,
+
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
@@ -21,4 +26,9 @@
       "module": "CommonJS",
     }
   },
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+
 }

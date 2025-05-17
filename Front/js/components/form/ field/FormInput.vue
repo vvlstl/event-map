@@ -3,7 +3,6 @@
 		class="input"
 		:type="field.attrs?.type ?? 'text'"
 		v-bind="field.attrs"
-		v-model="modelValue"
 		v-maska="maskOptions"
 		ref="input"
 	>
@@ -22,8 +21,6 @@
 	};
 
 	const props = defineProps<TComponentProps>();
-
-	const modelValue = defineModel();
 
 	const maskOptions = computed((): MaskInputOptions | null => {
 		return props.field.options?.mask ?? null;

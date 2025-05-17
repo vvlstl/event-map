@@ -1,5 +1,5 @@
 <template>
-	<label  class="checkbox">
+	<label class="checkbox">
 		<input
 			type="checkbox"
 			class="checkbox__input"

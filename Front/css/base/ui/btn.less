@@ -28,7 +28,7 @@
   --btn-icon-gap: 8rem;
   --btn-padding: 0 var(--m24);
   --btn-border-radius: 12rem;
-  --btn-icon-size: 24rem;
+  --btn-icon-size: 16rem;
   --btn-fw: 700;
   --btn-fs: var(--fs16);
 
@@ -65,7 +65,7 @@
   .hover(@hoverRuleset: @hoverRuleset, @activeRuleset: @activeRuleset);
 
   &__icon {
-    .container(var(--icon-size, auto));
+    .container(var(--btn-icon-size));
     position: relative;
 
     picture, img, svg {
@@ -158,18 +158,8 @@
   }
 
   // Типы кнопок
-  &--tool {
-    .size(var(--tool-btn-size, 56rem));
-    border-radius: 50%;
-    padding: 0;
-  }
-
-  &--socials {
-    --icon-size: var(--socials-btn-icon-size, 16rem);
-
-    .size(var(--socials-btn-size, 24rem));
-    border-radius: 50%;
-    padding: 0;
+  &--square {
+    .size(var(--btn-height));
   }
 
   &--slider-arrow {

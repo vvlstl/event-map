@@ -31,10 +31,11 @@ export class MapManager {
      */
     private initTileLayer(): void {
         this.tileLayer = L.tileLayer(
-            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            'https://core-renderer-tiles.maps.yandex.net/tiles?l=map&x={x}&y={y}&z={z}&scale=1&lang=ru_RU',
             {
-                attribution: '© Esri Satellite',
-                maxZoom: 19
+                attribution: '© Yandex Maps',
+                maxZoom: 19,
+                subdomains: ['01', '02', '03', '04'] // Опционально, для балансировки нагрузки
             }
         ).addTo(this.map);
     }

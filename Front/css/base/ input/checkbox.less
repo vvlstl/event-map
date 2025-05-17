@@ -1,0 +1,101 @@
+@import "../../_var";
+
+.checkbox,
+.radio {
+  --flag-size: 20rem;
+  --flag-radio-size: 10rem;
+  --flag-margin: 8rem;
+  --padding-left: 0rem;
+  --padding-right: var(--padding-left);
+  --padding-top: 0rem;
+  --padding-bottom: var(--padding-top);
+
+  display: inline-block;
+  cursor: pointer;
+
+  &__input {
+    .hide-input();
+
+    &:focus {
+      ~.checkbox__label,
+      ~.radio__label {
+        &::before {
+          border-color: var(--input-focus-border-color);
+        }
+      }
+    }
+
+    &:checked {
+      ~.checkbox__label,
+      ~.radio__label {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: var(--flag-size);
+    padding: var(--padding-top) var(--padding-right) var(--padding-bottom) calc(var(--padding-left) + var(--flag-size) + var(--flag-margin));
+
+    .hover({
+      &::before {
+        border-color: var(--input-hover-border-color);
+      }
+    }, @activeRuleset: false);
+
+    &::before,
+    &::after {
+      .pseudo();
+      top: 50%;
+      left: calc(var(--padding-left) + var(--flag-size) / 2);
+      transform: translate(-50%, -50%);
+    }
+
+    &::before {
+      .size(var(--flag-size));
+      .transit(border-color);
+      box-sizing: border-box;
+      border: 1rem solid var(--input-border-color);
+      background: var(--input-background-color);
+    }
+
+    &::after {
+      .transit(opacity);
+      opacity: 0;
+    }
+
+    a:not([class]) {
+      &:extend(.text-content a:not([class]) all);
+    }
+  }
+}
+
+.checkbox {
+  &__label {
+    &::after {
+      // TODO актуализировать иконку чекбокса в спрайте
+      //.icon(@checkbox);
+    }
+  }
+}
+
+.radio {
+  &__label {
+    &::before {
+      border-radius: 50%;
+    }
+
+    &::after {
+      .size(var(--flag-radio-size));
+      background: @cBlack;
+      border-radius: 50%;
+    }
+  }
+}
+

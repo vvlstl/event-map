@@ -97,8 +97,7 @@ export default (env: EnvVariables) => {
                             loader: 'svg-sprite-loader',
                             options: {
                                 extract: true,
-                                spriteFilename: path.resolve(__dirname, 'build/symbol.svg'),
-                                publicPath: '/build/',
+                                spriteFilename: 'symbol.svg',
                                 symbolId: '[name]',
                                 esModule: false
                             }

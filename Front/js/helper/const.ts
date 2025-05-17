@@ -8,3 +8,4 @@ export const BREAKPOINTS = {
 };
 
 export const SYMBOLS_SVG: string = '/build/symbol.svg';
+export const INPUT_SELECTOR = 'input:not([type="hidden"]), textarea, select, .multiselect';

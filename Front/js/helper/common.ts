@@ -14,3 +14,35 @@ export function wordForm(num: number, word: string[]): string {
 
     return word[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[(num % 10 < 5) ? num % 10 : 5]];
 }
+
+// ios fixed input focus
+export function focusInput(input: HTMLInputElement) {
+    if (!input) return;
+
+    if (input.classList.contains('multiselect')) {
+        const event = new Event('multiselect-focus');
+        input.dispatchEvent(event);
+
+        const componentFocusEvent = new Event('focusin');
+        input.dispatchEvent(componentFocusEvent);
+
+        return;
+    }
+
+    const fakeInput = document.createElement('input');
+    fakeInput.setAttribute('type', 'text');
+    fakeInput.style.position = 'fixed';
+    fakeInput.style.opacity = '0';
+    fakeInput.style.height = '0';
+    fakeInput.style.fontSize = '16px';
+    document.body.prepend(fakeInput);
+
+    fakeInput.focus();
+
+    setTimeout(() => {
+        input.click();
+        input.focus({focusVisible: true} as FocusOptions);
+        fakeInput.remove();
+    }, 300);
+}
+

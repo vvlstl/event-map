@@ -8,9 +8,7 @@ type TFieldController<T = any> = {
 
     name: Ref<string>,
     label: Ref<string>,
-    attrs: {
-        [name: string]: string|null
-    }
+    attrs: { [name: string]: string | number | boolean };
     options?: {
         [name: string]: any
     }
