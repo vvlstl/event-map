@@ -35,10 +35,11 @@ class EventController extends Controller
                 'address'      => $request->post('address'),
                 'latitude'     => $coords[0] ?? null,
                 'longitude'    => $coords[1] ?? null,
-                'datetime'     => new Carbon($request->post('datetime')),
+                'datetime'     => $request->post('datetime')
+                    ? new Carbon($request->post('datetime'))
+                    : null,
                 'preview_text' => $request->post('previewText'),
                 'detail_text'  => $request->post('detailText'),
-                'type'         => $request->post('type'),
                 'category_id'  => $request->post('categoryId'),
                 'raw_event_id' => $request->post('rawEventId'),
             ])->save();

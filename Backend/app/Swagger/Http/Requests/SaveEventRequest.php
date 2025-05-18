@@ -39,11 +39,6 @@ namespace App\Swagger\Http\Requests;
  *         ),
  *     ),
  *     @OA\Property(
- *         property="type",
- *         description="Тип",
- *         type="string",
- *     ),
- *     @OA\Property(
  *         property="categoryId",
  *         description="ID категории",
  *         type="integer",

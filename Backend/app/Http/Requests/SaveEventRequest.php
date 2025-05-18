@@ -15,11 +15,10 @@ class SaveEventRequest extends FormRequest
         return [
             'title'       => ['required'],
             'address'     => ['required'],
-            'datetime'    => ['required', 'date'],
+            'datetime'    => ['date'],
             'previewText' => ['required'],
             'detailText'  => ['required'],
             'tags'        => ['array'],
-            'type'        => ['required', Rule::in(EventTypeEnum::getList())],
             'categoryId'  => ['required', Rule::exists(EventCategory::class, 'id')],
             'rawEventId'  => ['required', Rule::exists(RawEvent::class, 'id')],
         ];

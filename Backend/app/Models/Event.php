@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $title
@@ -70,7 +70,6 @@ class Event extends Model
         'datetime',
         'preview_text',
         'detail_text',
-        'type',
         'category_id',
         'raw_event_id',
     ];
