@@ -11,15 +11,36 @@ class RawEvent
 {
     /**
      * @OA\Property(
-     *     title="ID",
+     *     title="id",
      * )
      */
     protected int $id;
 
     /**
      * @OA\Property(
-     *     title="Оригинальный текст",
+     *     title="url",
      * )
      */
-    protected string $title;
+    protected string $url;
+
+    /**
+     * @OA\Property(
+     *     title="datetime",
+     * )
+     */
+    protected string $datetime;
+
+    /**
+     * @OA\Property(
+     *     title="sourceName",
+     * )
+     */
+    protected string $sourceName;
+
+    /**
+     * @OA\Property(
+     *     title="sourceUrl",
+     * )
+     */
+    protected string $sourceUrl;
 }

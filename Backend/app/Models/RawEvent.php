@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $url
@@ -33,4 +33,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RawEvent extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'url',
+        'raw_text',
+        'source_name',
+        'source_url',
+        'datetime',
+    ];
+
+    protected $casts = [
+        'datetime'  => 'datetime',
+    ];
 }

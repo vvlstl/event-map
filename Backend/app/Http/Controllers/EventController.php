@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaveEventRequest;
 use App\Http\Resources\EventCategoryResource;
 use App\Http\Resources\EventResource;
-use App\Http\Resources\RawEventResource;
 use App\Http\Responses\ApiResponse;
 use App\Models\Event;
 use App\Models\EventCategory;
-use App\Models\RawEvent;
 use App\Services\DaDataService;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Carbon;
@@ -26,12 +24,7 @@ class EventController extends Controller
         return new ApiResponse(EventCategoryResource::collection(EventCategory::all()));
     }
 
-    public function raw(RawEvent $rawEvent): Responsable
-    {
-        return new ApiResponse(RawEventResource::make($rawEvent));
-    }
-
-    public function saveEvent(SaveEventRequest $request, DaDataService $daDataService): Responsable
+    public function save(SaveEventRequest $request, DaDataService $daDataService): Responsable
     {
         $address = $request->post('address');
         $coords = $daDataService->getCoords($address);

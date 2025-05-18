@@ -12,8 +12,12 @@ class RawEventResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'      => $this->id,
-            'rawText' => $this->raw_text,
+            'id'         => $this->id,
+            'url'        => $this->url,
+            'datetime'   => $this->datetime->toString(),
+            'sourceName' => $this->source_name,
+            'sourceUrl'  => $this->source_url,
+            'text'       => $this->raw_text,
         ];
     }
 }

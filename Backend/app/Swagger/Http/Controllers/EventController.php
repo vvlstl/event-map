@@ -77,52 +77,10 @@ class EventController
     }
 
     /**
-     * Получить данные сырого события
-     *
-     * @OA\Get(
-     *     path="/api/event/raw/{id}",
-     *     tags={"События"},
-     *
-     *     @OA\Parameter(
-     *         name="id",
-     *         description="ID сырого события",
-     *         in="path",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="int",
-     *             example="10",
-     *         )
-     *     ),
-     *
-     *     @OA\Response(
-     *         response="200",
-     *         description="Результат выполнения запроса",
-     *         @OA\JsonContent(
-     *             allOf={
-     *                 @OA\Schema(ref="#/components/schemas/ApiResponse"),
-     *                 @OA\Schema(
-     *                     type="object",
-     *                     @OA\Property(
-     *                         property="data",
-     *                         type="object",
-     *                         description="Событие",
-     *                         ref="#/components/schemas/RawEvent",
-     *                     )
-     *                )
-     *             }
-     *         ),
-     *     ),
-     * ),
-     */
-    public function raw()
-    {
-    }
-
-    /**
      * Сохранить данные о событии
      *
      * @OA\Post(
-     *     path="/api/event/save-event",
+     *     path="/api/event/save",
      *     tags={"События"},
      *
      *     @OA\RequestBody(
@@ -137,7 +95,7 @@ class EventController
      *     ),
      * ),
      */
-    public function saveEvent()
+    public function save()
     {
     }
 }
