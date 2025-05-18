@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker compose up -d
+docker compose up -d --build
 
 docker exec php-fpm composer install
 docker exec php-fpm php artisan migrate
