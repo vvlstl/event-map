@@ -5,8 +5,9 @@ use App\Http\Controllers\RawEventController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('event')->group(function () {
-    Route::get('{event}', [EventController::class, 'detail']);
     Route::post('save', [EventController::class, 'save']);
+    Route::get('list', [EventController::class, 'list']);
+    Route::get('{event}', [EventController::class, 'detail']);
 });
 
 Route::prefix('event/raw')->group(function () {

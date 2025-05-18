@@ -13,10 +13,13 @@ class RawEventFactory extends Factory
     public function definition(): array
     {
         return [
-            'url'        => $this->faker->url(),
-            'raw_text'   => $this->faker->text(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'url'         => $this->faker->url(),
+            'raw_text'    => $this->faker->text(),
+            'source_url'  => $this->faker->url(),
+            'source_name' => $this->faker->word(),
+            'datetime'    => $this->faker->dateTime(),
+            'created_at'  => Carbon::now(),
+            'updated_at'  => Carbon::now(),
         ];
     }
 }

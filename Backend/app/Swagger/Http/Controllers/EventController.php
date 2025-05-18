@@ -98,4 +98,39 @@ class EventController
     public function save()
     {
     }
+
+    /**
+     * Получить список событий по фильтру
+     *
+     * @OA\Get(
+     *     path="/api/event/list",
+     *     tags={"События"},
+     *
+     *     @OA\RequestBody(
+     *         description="Данные фильтрв",
+     *         @OA\JsonContent(ref="#/components/schemas/FilterEventListRequest"),
+     *     ),
+     *
+     *     @OA\Response(
+     *         response="200",
+     *         description="Результат выполнения запроса",
+     *         @OA\JsonContent(
+     *             allOf={
+     *                 @OA\Schema(ref="#/components/schemas/ApiResponse"),
+     *                 @OA\Schema(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="data",
+     *                         type="array",
+     *                         @OA\Items(ref="#/components/schemas/Event"),
+     *                     )
+     *                )
+     *             }
+     *         ),
+     *     ),
+     * ),
+     */
+    public function list()
+    {
+    }
 }

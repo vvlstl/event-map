@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterEventListRequest;
 use App\Http\Requests\SaveEventRequest;
 use App\Http\Resources\EventCategoryResource;
 use App\Http\Resources\EventResource;
@@ -55,5 +56,31 @@ class EventController extends Controller
         }
 
         return new ApiResponse();
+    }
+
+    public function list(FilterEventListRequest $request): Responsable
+    {
+        $filter = $request->post('filter');
+        $query = Event::query();
+
+        if ($filter) {
+            if (!empty($filter['query'])) {
+                $queryString = (string)$filter['query'];
+
+                $query->where('title', 'like', '%' . $queryString . '%')
+                    ->orWhere('address', 'like', '%' . $queryString . '%')
+                    ->orWhere('preview_text', 'like', '%' . $queryString . '%')
+                    ->orWhere('detail_text', 'like', '%' . $queryString . '%');
+            }
+
+            if (!empty($filter['categoryIds'])) {
+                $query->whereIn('category_id', $filter['categoryIds']);
+            }
+        }
+
+        $list = $query->get();
+        $list = EventResource::collection($list);
+
+        return new ApiResponse($list);
     }
 }

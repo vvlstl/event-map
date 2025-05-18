@@ -19,6 +19,7 @@ class EventResource extends JsonResource
             'longitude'   => $this->longitude,
             'url'         => $this->rawEvent->url,
             'previewText' => $this->preview_text,
+            'detailText'  => $this->detail_text,
             'datetime'    => $this->datetime->toString(),
         ];
     }
