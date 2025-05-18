@@ -26,13 +26,13 @@
 			<div class="event-card__picture">
 				<VuePicture v-bind="item.picture"/>
 			</div>
-			<div class="event-card__content">
-				<div class="event-card__text" v-html="item.previewText"/>
-				<div class="event-card__footer">
-					<span>Подробнее</span>
-					<span class="event-card__more-icon"><SvgSymbol name="more"/></span>
-				</div>
+
+			<div class="event-card__text" v-html="item.previewText"/>
+			<div class="event-card__footer">
+				<span>Подробнее</span>
+				<span class="event-card__more-icon"><SvgSymbol name="more"/></span>
 			</div>
+
 		</div>
 	</div>
 </template>
