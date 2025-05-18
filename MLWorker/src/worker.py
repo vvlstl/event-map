@@ -26,7 +26,7 @@ class Worker:
 
     async def _process(self, message: aio_pika.message.IncomingMessage) -> None:
         async with message.process():
-            event_type = message.headers.get("event_type")
+            event_type = "news"
             news_sid = message.body.decode()
 
             context = ProcessorContext(news_sid=news_sid)
