@@ -25,7 +25,7 @@ export function api() {
     }
 
     function getCategoryList() {
-        return sendRequest('category/list');
+        return sendRequest('category/extended-list');
     }
 
     function sendRequest(apiMethod: string, data: any = null, httpMethod: 'get' | 'post' = 'get') {

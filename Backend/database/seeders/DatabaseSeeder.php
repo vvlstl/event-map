@@ -13,15 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            EventCategorySeeder::class,
+            MockSeeder::class,
+            FakeSeeder::class
         ]);
-
-        $eventCategories = EventCategory::all();
-
-        Event::factory(10)
-            ->for($eventCategories->random(), 'category')
-            ->for(RawEvent::factory()->create())
-            ->has(Tag::factory()->count(3))
-            ->create();
     }
 }

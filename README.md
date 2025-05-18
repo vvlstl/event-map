@@ -15,12 +15,17 @@ sh init.sh
 docker compose down
 ```
 
-Запуск наполнителей БД:
+Заполнить БД моковыми данными:
 ```shell
-docker exec php-fpm php artisan db:seed
+docker exec php-fpm php artisan db:seed --class="\Database\Seeders\MockSeeder"
 ```
 
-Запуск сборки фронта:
+Заполнить БД фейковыми данными:
 ```shell
-docker exec frontend npm run start
+docker exec php-fpm php artisan db:seed --class="\Database\Seeders\FakeSeeder"
+```
+
+Запуск сборки фронта (нужен node 18):
+```shell
+npm ci && npm run start
 ```

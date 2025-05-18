@@ -23,8 +23,8 @@ class EventResource extends JsonResource
             'datetime'    => $this->datetime->toString(),
             'label'       => [
                 'text'  => $this->category->name,
-                'code'  => 'interests', //todo
-                'color' => '#ff00ff', //todo
+                'code'  => $this->category->code,
+                'color' => $this->category->color,
             ]
         ];
     }

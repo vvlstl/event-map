@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveEventRequest;
-use App\Http\Resources\EventCategoryResource;
 use App\Http\Resources\EventResource;
 use App\Http\Responses\ApiResponse;
 use App\Models\Event;
-use App\Models\EventCategory;
 use App\Services\DaDataService;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
@@ -18,11 +16,6 @@ class EventController extends Controller
     public function detail(Event $event): Responsable
     {
         return new ApiResponse(new EventResource($event));
-    }
-
-    public function categoryList(): Responsable
-    {
-        return new ApiResponse(EventCategoryResource::collection(EventCategory::all()));
     }
 
     public function save(SaveEventRequest $request, DaDataService $daDataService): Responsable

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventCategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RawEventController;
 use Illuminate\Support\Facades\Route;
@@ -16,5 +17,6 @@ Route::prefix('event/raw')->group(function () {
 });
 
 Route::prefix('category')->group(function () {
-    Route::get('list', [EventController::class, 'categoryList']);
+    Route::get('list', [EventCategoryController::class, 'list']);
+    Route::get('extended-list', [EventCategoryController::class, 'extendedList']);
 });
