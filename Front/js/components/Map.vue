@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-	import {computed, onBeforeUnmount, onMounted, ref} from 'vue';
+import {computed, onBeforeUnmount, onMounted, ref, watch} from 'vue';
 	import {MapManager} from "~/models/MapManager";
 	import EventBus from "~/js/helper/event-bus";
 	import {Icon, LatLng} from "leaflet";
@@ -51,6 +51,11 @@
 
 		map.value.onMarkerClick(data.latlng, clickedMarker);
 	}
+
+    watch(mapMarkers, (newMarkers) => {
+        map.value?.clearMarkers();
+        map.value?.addMarkers(newMarkers);
+    });
 
 	onMounted(() => {
 		map.value = new MapManager('map');

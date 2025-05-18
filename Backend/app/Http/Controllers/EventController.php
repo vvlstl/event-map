@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FilterEventListRequest;
 use App\Http\Requests\SaveEventRequest;
 use App\Http\Resources\EventCategoryResource;
 use App\Http\Resources\EventResource;
@@ -11,6 +10,7 @@ use App\Models\Event;
 use App\Models\EventCategory;
 use App\Services\DaDataService;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class EventController extends Controller
@@ -58,24 +58,21 @@ class EventController extends Controller
         return new ApiResponse();
     }
 
-    public function list(FilterEventListRequest $request): Responsable
+    public function list(Request $request): Responsable
     {
-        $filter = $request->post('filter');
+        $queryString = $request->query('query');
+        $categoryId = $request->query('categoryId');
         $query = Event::query();
 
-        if ($filter) {
-            if (!empty($filter['query'])) {
-                $queryString = (string)$filter['query'];
+        if (!empty($queryString)) {
+            $query->where('title', 'like', '%' . $queryString . '%')
+                ->orWhere('address', 'like', '%' . $queryString . '%')
+                ->orWhere('preview_text', 'like', '%' . $queryString . '%')
+                ->orWhere('detail_text', 'like', '%' . $queryString . '%');
+        }
 
-                $query->where('title', 'like', '%' . $queryString . '%')
-                    ->orWhere('address', 'like', '%' . $queryString . '%')
-                    ->orWhere('preview_text', 'like', '%' . $queryString . '%')
-                    ->orWhere('detail_text', 'like', '%' . $queryString . '%');
-            }
-
-            if (!empty($filter['categoryIds'])) {
-                $query->whereIn('category_id', $filter['categoryIds']);
-            }
+        if (!empty($categoryId)) {
+            $query->where('category_id', $categoryId);
         }
 
         $list = $query->get();

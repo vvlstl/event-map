@@ -106,11 +106,6 @@ class EventController
      *     path="/api/event/list",
      *     tags={"События"},
      *
-     *     @OA\RequestBody(
-     *         description="Данные фильтрв",
-     *         @OA\JsonContent(ref="#/components/schemas/FilterEventListRequest"),
-     *     ),
-     *
      *     @OA\Response(
      *         response="200",
      *         description="Результат выполнения запроса",

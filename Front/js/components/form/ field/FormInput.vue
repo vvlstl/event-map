@@ -4,6 +4,7 @@
 		:type="field.attrs?.type ?? 'text'"
 		v-bind="field.attrs"
 		v-maska="maskOptions"
+        @input="emit('update:modelValue', $event.target.value)"
 		ref="input"
 	>
 </template>
@@ -18,11 +19,11 @@
 
 	type TComponentProps = {
 		field: TField,
+        modelValue: string,
 	};
 
+    const emit = defineEmits(['update:modelValue']);
 	const props = defineProps<TComponentProps>();
-
-	//const modelValue = defineModel();
 
 	const maskOptions = computed((): MaskInputOptions | null => {
 		return props.field.options?.mask ?? null;

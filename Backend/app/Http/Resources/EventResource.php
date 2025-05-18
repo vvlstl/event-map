@@ -15,12 +15,17 @@ class EventResource extends JsonResource
             'id'          => $this->id,
             'title'       => $this->title,
             'address'     => $this->address,
-            'latitude'    => $this->latitude,
-            'longitude'   => $this->longitude,
+            'lat'         => $this->latitude,
+            'lng'         => $this->longitude,
             'url'         => $this->rawEvent->url,
             'previewText' => $this->preview_text,
             'detailText'  => $this->detail_text,
             'datetime'    => $this->datetime->toString(),
+            'label'       => [
+                'text'  => $this->category->name,
+                'code'  => 'interests', //todo
+                'color' => '#ff00ff', //todo
+            ]
         ];
     }
 }

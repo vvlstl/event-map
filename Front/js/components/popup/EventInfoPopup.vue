@@ -25,7 +25,7 @@
 			<div class="event-popup__title" v-html="item.name"/>
 		</div>
 		<div class="event-popup__main">
-			<div class="event-popup__picture">
+			<div v-if="item.picture" class="event-popup__picture">
 				<VuePicture v-bind="item.picture"/>
 			</div>
 			<div class="event-popup__text" v-html="markedText"/>

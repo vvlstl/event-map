@@ -14,7 +14,7 @@
 					</div>
 					<div class="label__text" v-html="item.label.text"/>
 				</div>
-				<div class="event-card__tags">
+				<div v-if="item.tags?.length" class="event-card__tags">
 					<span
 						v-for="(tag, index) in item.tags.slice(0, 2)"
 						v-html="tag"
@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="event-card__main">
-			<div class="event-card__picture">
+			<div v-if="item.picture" class="event-card__picture">
 				<VuePicture v-bind="item.picture"/>
 			</div>
 

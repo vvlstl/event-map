@@ -41,7 +41,7 @@
 	import FormInput from "~/js/components/form/ field/FormInput.vue";
 	import TForm from "~/js/controllers/form/type/TForm";
 	import TFieldController from "~/js/controllers/form/type/TFieldController";
-	import {computed, ref} from "vue";
+    import {computed, ref, watch} from "vue";
 	import formController from "~/js/controllers/form";
 
 	//TODO для верстки
@@ -60,7 +60,7 @@
 		options: {},
 	}
 
-	const emit = defineEmits(['close']);
+	const emit = defineEmits(['close', 'input']);
 
 	const form = formController<{
 		query: TFieldController<string>,
@@ -71,6 +71,10 @@
 	const input = computed(() => {
 		return formInputInstance.value?.input;
 	});
+
+    watch(() => form.query.value, (queryValue) => {
+        emit('input', queryValue);
+    })
 
 	function clear() {
 		form.query.value = '';

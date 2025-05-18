@@ -6,9 +6,9 @@ export type TEventCard = {
     name: string,
     previewText: string,
     detailText: string,
-    tags: string[],
+    tags?: string[],
     label: TLabel,
-    picture: TPicture,
+    picture?: TPicture,
     lat: number,
     lng: number,
 }

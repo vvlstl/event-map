@@ -10,12 +10,13 @@
 
 			<div class="info-events__today">
 				<div class="info-events__count">Событий в городе <b>{{ items.length }}</b></div>
-				<SearchForm/>
+				<SearchForm @input="emit('queryInput', $event)"/>
 				<div class="info-events__categories">
 					<CategoryCard
-						v-for="(categoryItem, index) in categoryCard"
+						v-for="(categoryItem, index) in categoryCards"
 						:item="categoryItem"
 						:key="index"
+                        @click="emit('filterByCategory', $event)"
 					/>
 				</div>
 			</div>
@@ -38,16 +39,17 @@
 	import {TEventCard} from "~/types/info-events/TEventCard";
 	import EventCard from "~/js/components/info-events/EventCard.vue";
 	import SearchForm from "~/js/components/form/SearchForm.vue";
-	import {ref} from "vue";
+    import {onMounted, ref} from "vue";
 	import CategoryCard from "~/js/components/info-events/CategoryCard.vue";
-	import {CategoryCardData} from "~/markupdata/CategoryCardData";
 	import {TCategoryCard} from "~/types/info-events/TCategoryCard";
+    import {api} from '~/js/helper/api';
 
 	type TComponentProps = {
 		items: TEventCard[];
 		open?: boolean,
 	}
 
+    const emit = defineEmits(['filterByCategory', 'queryInput']);
 	const props = defineProps<TComponentProps>();
 
 	const toDayDate = new Date().toLocaleString('ru-RU', {day: 'numeric', month: 'long'})
@@ -60,7 +62,15 @@
 		isOpen.value = state;
 	}
 
-	const categoryCard: TCategoryCard[] = CategoryCardData.getCategoryCard();
+	const categoryCards = ref<TCategoryCard[]>([]);
+
+    onMounted(async () => {
+        const response = await api().getCategoryList();
+
+        if (response.success) {
+            categoryCards.value = response.data;
+        }
+    })
 
 </script>
 
