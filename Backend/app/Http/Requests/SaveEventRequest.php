@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\EventTypeEnum;
 use App\Models\EventCategory;
 use App\Models\RawEvent;
 use Illuminate\Foundation\Http\FormRequest;
@@ -15,7 +14,7 @@ class SaveEventRequest extends FormRequest
         return [
             'title'       => ['required'],
             'address'     => ['required'],
-            'datetime'    => ['date'],
+            'datetime'    => ['date', 'nullable'],
             'previewText' => ['required'],
             'detailText'  => ['required'],
             'tags'        => ['array'],
