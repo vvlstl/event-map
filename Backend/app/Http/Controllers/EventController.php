@@ -55,7 +55,7 @@ class EventController extends Controller
     {
         $queryString = $request->query('query');
         $categoryId = $request->query('categoryId');
-        $query = Event::query();
+        $query = Event::query()->whereNotNull('latitude')->whereNotNull('longitude');
 
         if (!empty($queryString)) {
             $query->where('title', 'like', '%' . $queryString . '%')
