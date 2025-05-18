@@ -28,14 +28,7 @@ class NewsParseProcessor(BaseProcessor):
             address: str | None = Field(
                 default=None, description="Адрес в формате 'Город, ул. Название, дом N' или None")
 
-        # TODO Получаем новость
-        news = """
-        Более 20 тысяч украинских военных прошли подготовку в Германии в рамках миссии EUMAM Ukraine. Об этом сообщил украинский аналитический портал Deep State в Telegram.
-
-        Уточняется, что бойцы Вооруженных сил Украины (ВСУ) улучшили навыки в военном деле, в ведении боевых действий и техническом обслуживании.
-
-        Ранее украинский лидер Владимир Зеленский признал, что в процессе боев за Покровск (украинское название Красноармейска) в ДНР Вооруженные силы Украины потеряли несколько тысяч солдат.
-        """
+        news = context.text
         print(f"NewsParseProcessor.\nПолучено:\n{context}")
         prompt = (
             "Проанализируйте текст новости и извлеките структурированные данные."
@@ -47,8 +40,14 @@ class NewsParseProcessor(BaseProcessor):
 
         parsed_news = (await parse_news_agent.run(prompt, model_settings=model_settings)).output
         print(parsed_news.model_dump(mode="json"))
-
-        if parsed_news.address:
+        print(f"{parsed_news.address=}")
+        category_name = parsed_news.category
+        category_id = next(
+            (cat['id'] for cat in categories if cat['name'] == category_name),
+            None
+        )
+        print(f"parsed_news.news_type == NewsType.EVENT: {parsed_news.news_type == NewsType.EVENT}")
+        if parsed_news.address and parsed_news.news_type == NewsType.EVENT:
             event_data = {
                 "title": parsed_news.title,
                 "address": parsed_news.address,
@@ -56,14 +55,16 @@ class NewsParseProcessor(BaseProcessor):
                 "previewText": context.summary,
                 "detailText": context.text,
                 "tags": parsed_news.tags,
-                "categoryId": 1,
+                "categoryId": category_id,
                 "rawEventId": int(context.news_sid)
             }
             print(event_data)
-            print((await backend_client.get_raw_news(1)))
             # Сохранение в бэкенд
             await backend_client.save_event(event_data)
-
-            return NewsParseContext(news_sid=context.news_sid)
+            print("Загрузили событие")
+            return NewsParseContext(news_sid=context.news_sid,
+            text = context.text,
+            summary = context.summary)
         else:
+            print("Новость без адреса")
             return None

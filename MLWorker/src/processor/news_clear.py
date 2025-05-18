@@ -4,7 +4,7 @@ from pydantic_ai.settings import ModelSettings
 from src.schemas import ProcessorContext, NewsClearContext, ClearNewsModel
 from src.processor.base import BaseProcessor
 from src.llm.client import model
-
+from src.backend_api import backend_client
 model_settings = ModelSettings(temperature=0.3)
 
 clear_news_agent = Agent(model, output_type=ClearNewsModel)
@@ -12,7 +12,9 @@ clear_news_agent = Agent(model, output_type=ClearNewsModel)
 class NewsClearProcessor(BaseProcessor):
     async def process(self, context: ProcessorContext) -> NewsClearContext:
         print(f"NewsParseProcessor.\nПолучено:\n{context}")
-        news = context.news_sid
+        news_sid = int(context.news_sid)
+        news = (await backend_client.get_raw_news(news_sid))["text"]
+
         prompt = (
             "Отформатируйте и саммаризируйте текст в формат markdown."
             "Сделайте их красивым и выделяйте ключевые вещи жирным и тд."

@@ -20,6 +20,7 @@ class BackendClient:
                 async with session.get(url, headers=headers) as response:
                     response.raise_for_status()
                     categories = await response.json()
+                    print(categories["data"])
                     return categories["data"]
             except aiohttp.ClientError as e:
                 print(f"Request failed: {str(e)}")
