@@ -9,9 +9,10 @@ from src.backend_api import backend_client
 from src.schemas import NewsClearContext, NewsParseContext, NewsType
 from src.processor.base import BaseProcessor
 
+
 class NewsParseProcessor(BaseProcessor):
     async def process(self, context: NewsClearContext) -> NewsParseContext:
-        #Получение категорий с бэка
+        # Получение категорий с бэка
         categories = await backend_client.get_categories()
         category_names = [category['name'] for category in categories]
         Category = Literal[tuple(category_names)]
@@ -20,9 +21,12 @@ class NewsParseProcessor(BaseProcessor):
             news_type: NewsType = Field(description="Тип сообщени")
             title: str = Field(description="Заголовок", max_length=200)
             category: Category = Field(description="Категория")
-            tags: List[str] = Field(description="Список ключевых тегов. Ключевые термины из текста.")
-            time: str | None = Field(default=None, description="Дата/время в формате ДД.ММ.ГГГГ ЧЧ:ММ или None")
-            address: str | None = Field(default=None, description="Адрес в формате 'Город, ул. Название, дом N' или None")
+            tags: List[str] = Field(
+                description="Список ключевых тегов. Ключевые термины из текста.")
+            time: str | None = Field(
+                default=None, description="Дата/время в формате ДД.ММ.ГГГГ ЧЧ:ММ или None")
+            address: str | None = Field(
+                default=None, description="Адрес в формате 'Город, ул. Название, дом N' или None")
 
         # TODO Получаем новость
         news = """
@@ -43,5 +47,23 @@ class NewsParseProcessor(BaseProcessor):
 
         parsed_news = (await parse_news_agent.run(prompt, model_settings=model_settings)).output
         print(parsed_news.model_dump(mode="json"))
-        # TODO грузим в бэк
-        return NewsParseContext(news_sid=context.news_sid)
+
+        if parsed_news.address:
+            event_data = {
+                "title": parsed_news.title,
+                "address": parsed_news.address,
+                "datetime": parsed_news.time,
+                "previewText": context.summary,
+                "detailText": context.text,
+                "tags": parsed_news.tags,
+                "categoryId": 1,
+                "rawEventId": int(context.news_sid)
+            }
+            print(event_data)
+            print((await backend_client.get_raw_news(1)))
+            # Сохранение в бэкенд
+            await backend_client.save_event(event_data)
+
+            return NewsParseContext(news_sid=context.news_sid)
+        else:
+            return None

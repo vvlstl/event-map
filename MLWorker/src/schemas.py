@@ -9,7 +9,8 @@ class ProcessorContext(BaseModel):
     news_sid: str
 
 class NewsClearContext(ProcessorContext):
-    pass
+    text: str = Field(description="Исходный текст.")
+    summary: str = Field(description="Суммаризированый текст в один абзац.")
 
 class NewsParseContext(NewsClearContext):
     pass

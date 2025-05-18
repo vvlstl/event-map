@@ -21,4 +21,7 @@ class NewsClearProcessor(BaseProcessor):
 
         clear_news = (await clear_news_agent.run(prompt, model_settings=model_settings)).output
         print(clear_news.model_dump(mode="json"))
-        return NewsClearContext(news_sid=context.news_sid)
+        return NewsClearContext(news_sid=context.news_sid,
+        text = clear_news.text,
+        summary = clear_news.summary
+        )
