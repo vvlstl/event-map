@@ -41,7 +41,6 @@ services:
       - app-network
 
   rabbitmq:
-    hostname: rabbitmq
     container_name: rabbitmq
     image: rabbitmq:4.1-management-alpine
     ports:
@@ -52,12 +51,6 @@ services:
       RABBITMQ_DEFAULT_PASS: admin
     networks:
       - app-network
-    healthcheck:
-      test: rabbitmq-diagnostics -q ping
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
 
   postgresql:
     container_name: postgres
@@ -81,18 +74,6 @@ services:
       - "9000:8080"
     depends_on:
       - postgresql
-    networks:
-      - app-network
-
-  ml-worker:
-    container_name: ml-worker
-    build:
-      context: ./MLWorker
-    volumes:
-      - ./MLWorker:/app
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
     networks:
       - app-network
 
