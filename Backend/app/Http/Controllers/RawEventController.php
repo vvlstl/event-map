@@ -9,6 +9,7 @@ use App\Models\RawEvent;
 use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class RawEventController
 {
@@ -40,6 +41,7 @@ class RawEventController
                 ->setMessage('Произошла непредвиденная ошибка');
         }
 
+        Log::channel('ml-worker')->info('ID сырого сообщения для парсинга ML', ['id' => $model->id]);
         $queue->pushRaw($model->id, 'news_queue');
 
         return new ApiResponse();
