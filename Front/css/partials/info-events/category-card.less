@@ -6,6 +6,15 @@
   background: @cWhite;
   overflow: hidden;
   border: 1rem solid #E1E3E9;
+  cursor: pointer;
+
+  .hover({
+    .category-card {
+      &__name {
+        color: #1F40B7;
+      }
+    }
+  });
 
   &__content {
     flex: 1 1 auto;
@@ -17,6 +26,7 @@
   }
 
   &__name {
+    .transit(color);
     font: 800 var(--fs20) / 1 @font;
     color: #3C3C3C;
   }
