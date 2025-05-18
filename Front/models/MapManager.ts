@@ -11,7 +11,7 @@ export class MapManager {
     private tileLayer?: L.TileLayer;
 
     constructor(containerId: string) {
-        this.map = L.map(containerId).setView([53.3481, 83.7796], 13);
+        this.map = L.map(containerId).setView([53.15, 83.7], 13);
         this.initTileLayer();
         this.initEventListeners();
     }

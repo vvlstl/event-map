@@ -7,10 +7,10 @@ export class InfoEventsData {
     public static getMockEvents(count: number): TEventCard[] {
         return Array.from({length: count}, (_, i) => {
             const barnaulBounds = {
-                latMin: 53.35,
-                latMax: 53.40,
-                lngMin: 83.75,
-                lngMax: 83.80
+                latMin: 53.15,
+                latMax: 53.20,
+                lngMin: 83.70,
+                lngMax: 83.75
             };
 
             const name = faker.lorem.words(3);
