@@ -20,6 +20,7 @@ class Worker:
                 durable=True
             )
             async with queue.iterator() as queue_iter:
+                print("Инициализировано подключение к rabbit")
                 async for message in queue_iter:
                     await self._process(message)
 

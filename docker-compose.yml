@@ -17,6 +17,7 @@ services:
     container_name: php-fpm
     build:
       context: ./Backend
+      network: host
     volumes:
       - ./Backend:/var/www/backend
     depends_on:
