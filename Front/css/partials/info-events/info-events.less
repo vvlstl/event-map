@@ -17,6 +17,11 @@
     border: 1rem solid #E1E3E9;
   }
 
+  &__title {
+    font: 400 var(--fs32) / 0.8 @accentFontName;
+    color: #4665EC;
+  }
+
   &__today {
     display: flex;
     flex-direction: column;
@@ -26,6 +31,17 @@
     border-radius: 16rem;
     box-sizing: border-box;
     padding: var(--m24);
+  }
+
+  &__list-title,
+  &__count {
+    font: 400 var(--fs40) / 0.8 @captionFont;
+    color: @cBlack;
+
+    b {
+      font-weight: inherit;
+      color: #1F40B7;
+    }
   }
 
   &__categories {

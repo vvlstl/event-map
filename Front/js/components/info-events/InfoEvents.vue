@@ -9,7 +9,7 @@
 		<div class="info-events__content custom-scrollbar custom-scrollbar--hidden">
 
 			<div class="info-events__today">
-				<div class="info-events__count">Событий в городе 124</div>
+				<div class="info-events__count">Событий в городе <b>{{ items.length }}</b></div>
 				<SearchForm/>
 				<div class="info-events__categories">
 					<CategoryCard
@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="info-events__list">
-				<div class="info-events__list-title">куда сходить 18 мая</div>
+				<div class="info-events__list-title">куда сходить <b>{{ toDayDate }}</b></div>
 				<div class="info-events__list-items">
 					<EventCard
 						class="info-events__item"
@@ -49,6 +49,8 @@
 	}
 
 	const props = defineProps<TComponentProps>();
+
+	const toDayDate = new Date().toLocaleString('ru-RU', {day: 'numeric', month: 'long'})
 
 	const isOpen = ref<boolean>(props.open ?? false);
 
