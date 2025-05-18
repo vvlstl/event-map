@@ -26,7 +26,7 @@ class DaDataService
         $data = $this->sendRequest('clean/address', [$address]);
 
         $lat = floatval($data[0]['geo_lat'] ?? 0);
-        $lon = floatval($data[0]['geo_lat'] ?? 0);
+        $lon = floatval($data[0]['geo_lon'] ?? 0);
 
         if (empty($lat) || empty($lon)) {
             return null;
