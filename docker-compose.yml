@@ -1,16 +1,4 @@
 services:
-  node:
-    build:
-      context: ./Front
-    container_name: frontend
-    volumes:
-      - ./Front:/app
-    networks:
-      - app-network
-    tty: true
-    stdin_open: true
-    command: /bin/sh
-
   php-fpm:
     container_name: php-fpm
     build:
