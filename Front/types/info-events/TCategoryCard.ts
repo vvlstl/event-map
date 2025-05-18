@@ -1,5 +1,6 @@
 export type TCategoryCard = {
     name: string,
-    type: string,
+    code: string,
     tags: string[],
+    color: string,
 }

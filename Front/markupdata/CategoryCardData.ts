@@ -5,39 +5,43 @@ export class CategoryCardData {
         return [
             {
                 name: 'Интересы',
-                type: 'interests',
+                code: 'interests',
                 tags: [
                     '#настолки',
                     '#гончарное дело',
                     '#свечеварение',
                 ],
+                color: '#FF4373',
             },
             {
                 name: 'Движ',
-                type: 'moves',
+                code: 'moves',
                 tags: [
                     '#фесты',
                     '#концерты',
                     '#тусовки',
                 ],
+                color: '#FF43D0',
             },
             {
                 name: 'Саморазвитие',
-                type: 'development',
+                code: 'development',
                 tags: [
                     '#сбор_команды',
                     '#скейтбординг',
                     '#матчи',
                 ],
+                color: '#4369FF',
             },
             {
                 name: 'Социальные',
-                type: 'social',
+                code: 'social',
                 tags: [
                     '#праздники',
                     '#акции',
                     '#волонтерство',
                 ],
+                color: '#FACD1C',
             },
         ]
     }

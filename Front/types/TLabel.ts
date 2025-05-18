@@ -1,4 +1,5 @@
 export type TLabel = {
     text: string,
-    type: string,
+    code: string,
+    color: string,
 }

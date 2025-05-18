@@ -5,7 +5,10 @@
 	>
 		<div class="event-card__header">
 			<div class="event-card__info">
-				<div class="event-card__category label">
+				<div
+					class="event-card__category label"
+					:style="`--label-bg-color: ${item.label.color}`"
+				>
 					<div class="label__icon">
 						<SvgSymbol :name="item.label.type"/>
 					</div>

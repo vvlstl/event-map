@@ -1,6 +1,8 @@
 @import "../../_var";
 
 .category-card {
+  --category-card-bg-icon-section: transparent;
+
   display: flex;
   border-radius: 12rem;
   background: @cWhite;
@@ -44,41 +46,11 @@
     box-sizing: border-box;
     padding: 0 var(--m16);
     color: @cWhite;
+    background: var(--category-card-bg-icon-section);
 
     svg {
       --svg-size: 32rem;
     }
   }
 
-  &--interests {
-    .category-card {
-      &__icon {
-        background: #FF4373;
-      }
-    }
-  }
-
-  &--moves {
-    .category-card {
-      &__icon {
-        background: #FF43D0;
-      }
-    }
-  }
-
-  &--development {
-    .category-card {
-      &__icon {
-        background: #4369FF;
-      }
-    }
-  }
-
-  &--social {
-    .category-card {
-      &__icon {
-        background: #FFD42A;
-      }
-    }
-  }
 }

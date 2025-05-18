@@ -24,7 +24,7 @@
 			lng: event.lng,
 			options: {
 				icon: new Icon({
-					iconUrl: P_PICTURES + `markers/${event.label.type}.webp`,
+					iconUrl: P_PICTURES + `markers/${event.label.code}.webp`,
 					iconSize: [37, 43],
 				})
 			}

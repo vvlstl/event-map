@@ -22,7 +22,8 @@ export class InfoEventsData {
 
             const label: TLabel = {
                 text: faker.lorem.words(1),
-                type: faker.helpers.arrayElement(['interests', 'moves', 'social', 'development']),
+                code: faker.helpers.arrayElement(['interests', 'moves', 'social', 'development']),
+                color: faker.helpers.arrayElement(['#FF4373', '#FF43D0', '#4369FF', '#FACD1C']),
             }
 
             return {

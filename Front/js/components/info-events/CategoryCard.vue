@@ -1,14 +1,14 @@
 <template>
 	<div
 		class="category-card"
-		:class="`category-card--${item.type}`"
+		:style="`--category-card-bg-icon-section: ${item.color}`"
 	>
 		<div class="category-card__content">
 			<div class="category-card__name" v-html="item.name"/>
-			<div class="category-card__tags">{{item.tags.join(" ")}}</div>
+			<div class="category-card__tags">{{ item.tags.join(" ") }}</div>
 		</div>
 		<div class="category-card__icon">
-			<SvgSymbol :name="item.type"/>
+			<SvgSymbol :name="item.code"/>
 		</div>
 	</div>
 </template>
