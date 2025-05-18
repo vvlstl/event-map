@@ -6,6 +6,7 @@ use App\Http\Requests\SaveRawEventRequest;
 use App\Http\Resources\RawEventResource;
 use App\Http\Responses\ApiResponse;
 use App\Models\RawEvent;
+use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Carbon;
 
@@ -16,16 +17,18 @@ class RawEventController
         return new ApiResponse(RawEventResource::make($rawEvent));
     }
 
-    public function save(SaveRawEventRequest $request): Responsable
+    public function save(SaveRawEventRequest $request, Queue $queue): Responsable
     {
         try {
-            $result = RawEvent::make([
+            $model = RawEvent::make([
                 'url'         => $request->post('url'),
                 'raw_text'    => $request->post('text'),
                 'source_name' => $request->post('sourceName'),
                 'source_url'  => $request->post('sourceUrl'),
                 'datetime'    => new Carbon($request->post('datetime')),
-            ])->save();
+            ]);
+
+            $result = $model->save();
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
             $result = false;
@@ -36,6 +39,8 @@ class RawEventController
                 ->setSuccess(false)
                 ->setMessage('Произошла непредвиденная ошибка');
         }
+
+        $queue->pushRaw($model->id, 'news_queue');
 
         return new ApiResponse();
     }
