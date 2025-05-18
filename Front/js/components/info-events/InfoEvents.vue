@@ -3,7 +3,7 @@
 		class="info-events"
 	>
 		<div class="info-events__top">
-			<div class="info-events__title">СУЕТА!</div>
+			<div class="info-events__title">суета!</div>
 		</div>
 
 		<div class="info-events__content custom-scrollbar custom-scrollbar--hidden">

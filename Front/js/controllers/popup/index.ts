@@ -20,7 +20,7 @@ export function show(component: Component | keyof typeof PopupMap, props?: dynam
     if (typeof component === 'string') {
         component = PopupMap[component] as Component;
     }
-
+    console.log(props)
     return showPopup({
         component: component,
         bind: props,

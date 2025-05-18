@@ -111,11 +111,7 @@ export class MapManager {
      * Обработчик клика по маркеру
      */
     onMarkerClick(latlng: L.LatLng, content: TEventCard): void {
-        show('event', {
-            title: content.name,
-            text: marked(content.detailText),
-            picture: content.picture,
-        });
+        show('event', {item: content});
     }
 
     /**

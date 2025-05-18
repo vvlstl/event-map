@@ -1,7 +1,6 @@
 @import "../../_var";
 
 .event-popup {
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -9,11 +8,34 @@
   }
 
   &__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m24);
     max-width: calc(100% - (var(--cross-area-size, 24rem) + var(--grid-gap)));
   }
 
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: var(--m16);
+  }
+
+  &__tags {
+    display: flex;
+    align-items: center;
+    gap: var(--m8);
+    font: 300 var(--fs14) / 1 @font;
+    color: #5B5B5B;
+    flex-wrap: wrap;
+  }
+
   &__title {
-    font: 500 var(--fs24) / 1.4 @font;
+    font: 400 var(--fs40) / 0.8 @captionFont;
+  }
+
+  &__text {
+    font: 300 var(--fs14) / 1.2 @font;
+    color: #5B5B5B;
   }
 
   &__main {
@@ -31,11 +53,18 @@
     }
   }
 
-  &__text {
-    font: 400 var(--fs16) / 1.2 @font;
-    color: @cBlack600;
+  @media @mediaMoreSm {
+    top: calc(var(--grid-gap) + var(--header-height) + var(--m4)) !important;
+    left: var(--grid-gap) !important;
+    right: unset !important;
+    overflow: unset;
+
+    &__content {
+      border: 1rem solid #E1E3E9;
+      overflow: auto;
+      height: 100vh;
+      padding-bottom: calc(var(--grid-gap) + var(--header-height) + var(--m4) + var(--popup-padding));
+    }
   }
 
-  &__footer {
-  }
 }

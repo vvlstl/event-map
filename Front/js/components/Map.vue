@@ -59,12 +59,12 @@
 			map.value?.addMarkers(mapMarkers.value);
 		});
 
-		EventBus.on('click-to-map', handleMapClick);
+		//EventBus.on('click-to-map', handleMapClick);
 		EventBus.on('click-to-marker', handleMarkerClick);
 	});
 
 	onBeforeUnmount(() => {
-		EventBus.off('click-to-map', handleMapClick);
+		//EventBus.off('click-to-map', handleMapClick);
 		EventBus.off('click-to-marker', handleMarkerClick);
 
 		// Уничтожаем карту

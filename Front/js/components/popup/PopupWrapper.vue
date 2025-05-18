@@ -15,6 +15,7 @@
 		:content-class="{
             'popup__content': true,
             [type + '-popup__content']: type,
+            [classContent]: true
         }"
 		overlay-class="popup__overlay"
 		:focus-trap="true"
@@ -39,10 +40,14 @@
 	type TComponentProps = {
 		name?: string,
 		type?: string,
+		classContent?: string,
 	};
 
 	const props = defineProps<TComponentProps>();
+
 	const popupElement = ref<null | VueFinalModalComponent>(null);
+	console.log(props.classContent);
+
 	interface ModalSlotProps {
 		close: () => void;
 	}

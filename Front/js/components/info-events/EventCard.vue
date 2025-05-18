@@ -44,7 +44,6 @@
 	import {show} from "~/js/controllers/popup";
 	import VuePicture from "~/js/components/common/VuePicture.vue";
 	import SvgSymbol from "~/js/components/common/SvgSymbol.vue";
-	import {marked} from "marked";
 
 	type TComponentProps = {
 		item: TEventCard,
@@ -53,11 +52,8 @@
 	const props = defineProps<TComponentProps>();
 
 	function openPopup() {
-		show('event', {
-			title: props.item.name,
-			text: marked(props.item.detailText),
-			picture: props.item.picture,
-		});
+		if (!props.item) return;
+		show('event', {item: props.item});
 	}
 </script>
 
