@@ -16,24 +16,19 @@
 				ref="formInputInstance"
 			/>
 
-			<transition>
-				<button
-					v-show="form.query.value"
-					type="button"
-					class="link search-form__clear"
-					@click="clear"
-				>
-					<span class="link__icon"><span class="cross"/></span>
-				</button>
-			</transition>
+			<div class="search-form__input-icon">
+				<SvgSymbol name="search"/>
+			</div>
 
 			<button
 				type="submit"
-				class="btn btn--transparent btn--square search-form__submit"
+				class="btn search-form__submit"
 			>
 				<span class="btn__icon">
-					<SvgSymbol name="search"/>
+					<SvgSymbol name="calendar"/>
 				</span>
+
+				<span class="btn__text">Когда</span>
 			</button>
 		</InputWrap>
 	</FormWrapper>

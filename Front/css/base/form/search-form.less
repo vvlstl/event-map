@@ -3,20 +3,28 @@
 .search-form {
   position: relative;
 
-  &__clear {
-    --link-color: @cBlack400;
-    --link-icon-color: @cBlack400;
-
+  &__input-icon {
+    .container(24rem);
     position: absolute;
     top: 50%;
-    right: 54rem;
+    left: 16rem;
     transform: translateY(-50%);
+    color: red;
+
+    svg {
+      --svg-size: 16rem;
+    }
   }
 
   &__submit {
+    --btn-border-radius: 0 12rem 12rem 0;
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
   }
+
+  &__field {
+    --input-padding-right: 132rem;
+    --input-padding-left: calc(16rem + 12rem + var(--m24))}
 }

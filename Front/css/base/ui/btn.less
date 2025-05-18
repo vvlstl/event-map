@@ -24,9 +24,9 @@
   --btn-disabled-icon-filter: var(--btn-icon-filter);
 
   --btn-border-width: 1rem;
-  --btn-height: 48rem;
+  --btn-height: 40rem;
   --btn-icon-gap: 8rem;
-  --btn-padding: 0 var(--m24);
+  --btn-padding: 0 28rem;
   --btn-border-radius: 12rem;
   --btn-icon-size: 16rem;
   --btn-fw: 700;
@@ -52,7 +52,7 @@
   text-align: center;
   user-select: none;
   flex-shrink: 0;
-  font: var(--btn-fw) var(--btn-fs) / 1 @font;
+  font: 600 var(--fs14) / 1.5 @font;
 
   @hoverRuleset: {
     .btn-hover();
@@ -150,13 +150,6 @@
     --btn-active-border-color: transparent;
   }
 
-
-  // Модификаторы размера
-
-  &--sm {
-    --btn-height: 40rem;
-    --btn-border-radius: 2rem
-  }
 
   // Типы кнопок
   &--square {

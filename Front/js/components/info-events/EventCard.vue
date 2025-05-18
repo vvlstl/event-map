@@ -10,7 +10,7 @@
 					:style="`--label-bg-color: ${item.label.color}`"
 				>
 					<div class="label__icon">
-						<SvgSymbol :name="item.label.type"/>
+						<SvgSymbol :name="item.label.code"/>
 					</div>
 					<div class="label__text" v-html="item.label.text"/>
 				</div>
