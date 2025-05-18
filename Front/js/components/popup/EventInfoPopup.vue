@@ -14,7 +14,7 @@
 					</div>
 					<div class="label__text" v-html="item.label.text"/>
 				</div>
-				<div class="event-popup__tags">
+				<div v-if="item.tags?.length" class="event-popup__tags">
 					<span
 						v-for="(tag, index) in item.tags.slice(0, 2)"
 						v-html="tag"
