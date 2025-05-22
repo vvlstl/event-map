@@ -12,3 +12,4 @@ uv.lock
 .ropeproject
 *.log
 *.tmp
+.config.ts

@@ -1,8 +1,7 @@
 import {getJson, postJson} from '~/js/helper/ajax';
+import {BackendApiUrl} from '~/js/.config';
 
 export function api() {
-    const BASE_URL = 'http://localhost:8080/api/';
-
     function getEventList(query: string = '', categoryId: number = 0) {
         const searchParams = new URLSearchParams();
 
@@ -29,7 +28,7 @@ export function api() {
     }
 
     function sendRequest(apiMethod: string, data: any = null, httpMethod: 'get' | 'post' = 'get') {
-        let url = BASE_URL + apiMethod;
+        let url = BackendApiUrl + apiMethod;
 
         if (httpMethod === 'get') {
             if (data) {
