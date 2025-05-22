@@ -27,5 +27,5 @@ docker exec php-fpm php artisan db:seed --class="\Database\Seeders\FakeSeeder"
 
 Запуск сборки фронта (нужен node 18):
 ```shell
-npm ci && npm run start
+cd ./Front && npm ci && npm run start
 ```
