@@ -18,5 +18,4 @@ Route::prefix('event/raw')->group(function () {
 
 Route::prefix('category')->group(function () {
     Route::get('list', [EventCategoryController::class, 'list']);
-    Route::get('extended-list', [EventCategoryController::class, 'extendedList']);
 });

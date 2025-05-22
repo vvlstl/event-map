@@ -24,4 +24,25 @@ class EventCategory
      * )
      */
     protected string $name;
+
+    /**
+     * @OA\Property(
+     *     title="code",
+     * )
+     */
+    protected string $code;
+
+    /**
+     * @OA\Property(
+     *     title="color",
+     * )
+     */
+    protected string $color;
+
+    /**
+     * @OA\Property(
+     *     title="tags",
+     * )
+     */
+    protected string $tags;
 }
