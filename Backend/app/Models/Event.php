@@ -9,17 +9,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property string $title
  * @property string $address
- * @property float $latitude
- * @property float $longitude
- * @property \Illuminate\Support\Carbon $datetime
+ * @property float|null $latitude
+ * @property float|null $longitude
+ * @property \Illuminate\Support\Carbon|null $datetime
  * @property string $preview_text
  * @property string $detail_text
- * @property string $type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -46,7 +45,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Event wherePreviewText($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Event whereRawEventId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Event whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Event whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Event whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Event withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Event withoutTrashed()
